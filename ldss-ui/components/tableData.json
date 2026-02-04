@@ -1,0 +1,35 @@
+[
+    {
+        "source": {
+            "alias": "LearningResourceDescription",
+            "definition": "Summary of the course"
+        },
+        "relationship": true,
+        "target": {
+            "alias": "Course Description",
+            "definition": "Text that describes the course for purposes of summarization"
+        }
+    },
+    {
+        "source": {
+            "alias": "CourseSubjectMatter",
+            "definition": "The topics the resource covers"
+        },
+        "relationship": false,
+        "target": {
+            "alias": "This will not show",
+            "definition": "Because relationship is missing"
+        }
+    },
+    {
+        "source": {
+            "alias": "Thumbnail",
+            "definition": "Resolvable link to an image that exemplifies the resource"
+        },
+        "relationship": true,
+        "target": {
+            "alias": "Thumbnail",
+            "definition": "Resolvable link to an image that exemplifies the resource"
+        }
+    }
+]

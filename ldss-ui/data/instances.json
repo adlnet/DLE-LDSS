@@ -1,0 +1,17 @@
+{
+    "jko": {
+        "url": "https://lcv-a.ldss.tla.adlnet.gov/uid/api/terms/slim",
+        "name": "jko",
+        "displayName": "JKO"
+    },
+    "coursera": {
+        "url": "https://lcv-b.ldss.tla.adlnet.gov/uid/api/terms/slim",
+        "name": "coursera",
+        "displayName": "Coursera"
+    },
+    "p2881": {
+        "url": "https://ccv.ldss.tla.adlnet.gov/uid/api/terms/slim",
+        "name": "p2881",
+        "displayName": "P2881"
+    }
+}

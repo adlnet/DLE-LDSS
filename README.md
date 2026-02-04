@@ -1,2 +1,18 @@
-# DLE-LDSS
-Repo containing ADL's Partybus work for the DLE's LDSS. 
+# DLE-LDSS – Linked Data and Schema Service
+
+The **DLE Linked Data and Schema Service (LDSS)** is an open-source service for managing, serving, and validating linked data schemas.  
+This repository contains the **LDSS service source code** along with **Kubernetes manifests** for deploying it in cloud-native environments.
+
+LDSS is designed to support schema-driven systems, data interoperability, and standards-based linked data workflows.
+
+---
+
+## Components
+- [LDSS Manifests](./ldss-manifests/README.md) - K8 Base Deployment Resources Documentation
+- [LDSS UI](./ldss-ui//README.md) - LDSS UI Documentation
+- [LDSS XSS](./ldss-xss/README.md) - LDSS XSS Documentation
+- [LDSS XMS](./ldss-xms/README.md) - LDSS XMS Documentation 
+
+
+---
+

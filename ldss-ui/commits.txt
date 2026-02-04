@@ -1,0 +1,298 @@
+956073f | Bay Faubion | 2025-11-17 | Merge branch 'bay.faubion-master-patch-45544' into 'master'
+dbde7a0 | Bay Faubion | 2025-11-14 | Edit README.md
+35bfb44 | Luis Ramirez | 2025-11-10 | Merge branch 'docs' into 'master'
+7569b63 | luis-adl | 2025-11-10 | Add some documentation
+2e0c94f | Sarah Poole | 2025-11-06 | Merge branch 'bugfix/search-results' into 'master'
+e664dd1 | Sarah Poole | 2025-11-06 | revert back to GET
+be06c94 | Sarah Poole | 2025-11-05 | Merge branch 'bugfix/search-results' into 'master'
+06f35da | Sarah Poole | 2025-11-05 | Fix parsing of course data
+3bec582 | Sarah Poole | 2025-11-05 | Merge branch 'bugfix/search-results' into 'master'
+1489f42 | Sarah Poole | 2025-11-05 | fix lint error
+7f61523 | Sarah Poole | 2025-11-05 | Fix search results no courses found
+bd8b146 | Sarah Poole | 2025-11-05 | Merge branch 'bugfix/search-results' into 'master'
+442a8fc | Sarah Poole | 2025-11-05 | Fix search results GET 405 issue
+ceebc17 | Sarah Poole | 2025-09-24 | Merge branch 'fix/middleware-jwt-mock' into 'master'
+7964716 | Sarah Poole | 2025-09-24 | update cypress table tests
+e60452d | Sarah Poole | 2025-09-24 | Merge branch 'fix/middleware-jwt-mock' into 'master'
+7437915 | Sarah Poole | 2025-09-24 | table mapping options bug fix
+c3fc903 | Sarah Poole | 2025-09-23 | Merge branch 'fix/middleware-jwt-mock' into 'master'
+66de149 | Sarah Poole | 2025-09-23 | updating table and mapping unit tests
+f83f132 | Sarah Poole | 2025-09-22 | fixing table.cy.js cypress tests
+031388d | Sarah Poole | 2025-09-22 | Merge branch 'fix/middleware-jwt-mock' into 'master'
+627c744 | Sarah Poole | 2025-09-22 | add dummy cypress tsconfig.json file
+8f8e11b | Sarah Poole | 2025-09-19 | Merge branch 'fix/middleware-jwt-mock' into 'master'
+c68d1de | Sarah Poole | 2025-09-19 | fix route.test.js tests
+7c69330 | Sarah Poole | 2025-09-19 | updates for other cypress tests
+ff13791 | Sarah Poole | 2025-09-18 | Merge branch 'fix/middleware-jwt-mock' into 'master'
+acaa1e5 | Sarah Poole | 2025-09-18 | remove cypress.config
+58fdf99 | Sarah Poole | 2025-09-18 | Merge branch 'fix/middleware-jwt-mock' into 'master'
+4015583 | Sarah Poole | 2025-09-18 | cypress config update
+b684669 | Sarah Poole | 2025-09-18 | Merge branch 'fix/middleware-jwt-mock' into 'master'
+79e1a75 | Sarah Poole | 2025-09-17 | revamp cypress tests
+13f64a6 | Sarah Poole | 2025-09-17 | Merge branch 'fix/middleware-jwt-mock' into 'master'
+f7209f2 | Sarah Poole | 2025-09-17 | regen yarn.lock
+fbbbacd | Sarah Poole | 2025-09-17 | adjust babel and next versions
+53eb77f | Sarah Poole | 2025-09-17 | rebuild lock files
+d655111 | Sarah Poole | 2025-09-16 | change eslint-plugin-next to 15.5.2
+1cbde60 | Sarah Poole | 2025-09-16 | regen yarn.lock
+64303f9 | Sarah Poole | 2025-09-16 | updated next and runtime versions
+c0fbcd7 | Sarah Poole | 2025-09-16 | update eslint version
+928831f | Sarah Poole | 2025-09-16 | regen yarn.lock
+8f31465 | Sarah Poole | 2025-09-16 | fix trufflehog errors
+d88cfcb | Sarah Poole | 2025-09-15 | add mock jwt auth for cypress tests
+089feb2 | Sarah Poole | 2025-09-11 | Merge branch 'fix/middleware-jwt-mock' into 'master'
+9cd7783 | Sarah Poole | 2025-09-11 | fix jwt mock logic for cypress detection in middleware
+bf3d63f | Sarah Poole | 2025-09-11 | adjust jest mock in middleware
+55ab2d9 | Sarah Poole | 2025-09-10 | update cypress configs
+84c257b | Sarah Poole | 2025-09-09 | fix cypress tests T332 and T132
+49db326 | Sarah Poole | 2025-09-05 | update to nodejs22
+a8d487c | Sarah Poole | 2025-09-03 | update csp to be handled in middleware.ts
+118cda9 | Sarah Poole | 2025-09-03 | update csp headers
+f286f8c | Sarah Poole | 2025-09-03 | revisit sd element cypress tests
+b1da283 | Sarah Poole | 2025-09-02 | add ts env variable to cypress script
+a79a464 | Sarah Poole | 2025-09-02 | overriding bundler in cypress config
+4b1ff01 | Sarah Poole | 2025-08-28 | fix lint issue
+0b200fc | Sarah Poole | 2025-08-28 | fix lint issue
+39ff0b4 | Sarah Poole | 2025-08-28 | first pass at correcting cypress tests
+d34eeb3 | Sarah Poole | 2025-08-27 | adding ok - true to global fetch
+1abe376 | Sarah Poole | 2025-08-27 | regen yarn.lock
+0d7fc68 | Trey Hayden | 2025-08-27 | Merge branch 'sd-elements-cypress' into 'master'
+07f239a | Sarah Poole | 2025-08-27 | sd elements cypress tests
+665a105 | luis-adl | 2025-08-25 | Change USER_STAFF to full path
+69fb40b | luis-adl | 2025-08-25 | Refactor middleware.test.js
+91ae028 | luis-adl | 2025-08-25 | Change Ldss role to USER_STAFF
+85435f7 | Bay Faubion | 2025-08-25 | Merge branch 'bay-sonarqube' into 'master'
+28ee631 | Bay | 2025-08-25 | sonarqube updates
+66af4a4 | Bay | 2025-08-25 | updated mock url to https
+549a51b | Bay | 2025-08-25 | sonarqube fixes
+bb2f430 | luis-adl | 2025-08-24 | Fix lint
+e8144ca | luis-adl | 2025-08-24 | Fix tests Add tests
+0993389 | luis-adl | 2025-08-22 | Add tests Update jest.config.ts
+708336f | Bay Faubion | 2025-08-21 | Merge branch 'unittests' into 'master'
+f2ca372 | Bay | 2025-08-21 | updated verifyToken func in middleware.ts
+61ca343 | Bay | 2025-08-21 | updated makeReq func for Sonarqube
+32d69cd | Bay | 2025-08-21 | updated import order alphabetically
+0c7ad1d | Bay | 2025-08-21 | adding tests for middleware
+8a7bd17 | Bay | 2025-08-21 | adding space after jest env comment
+9eb21bb | Bay | 2025-08-21 | Merge branch 'master' into unittests
+8d9472f | Bay | 2025-08-21 | added tests for /api/busy route
+f48903b | Bay | 2025-08-21 | added tests for search route
+bdd3ffb | luis-adl | 2025-08-20 | Update yarn.lock
+8ac47c7 | Bay Faubion | 2025-08-20 | Merge branch 'unittests' into 'master'
+0489de0 | Bay | 2025-08-20 | import changes for linting
+766e913 | Bay | 2025-08-20 | updated Mock components to add displayname
+736ac53 | Bay | 2025-08-20 | removing unnecessary comments
+39e33b9 | Bay | 2025-08-20 | linting changes
+c7c6e1f | Bay | 2025-08-20 | making sonarqube changes
+4e6e114 | Bay Faubion | 2025-08-20 | Merge branch 'unittests' into 'master'
+8c397da | Bay | 2025-08-19 | updated all test files to use .js extension
+5a7153b | Bay | 2025-08-19 | deleteing more failing tests
+244056c | Bay | 2025-08-19 | updating unit tests and deleting failing tests
+af61b04 | Bay | 2025-08-19 | update mapping.test.ts tests
+b436676 | Bay | 2025-08-19 | fixing unit tests
+85e1b65 | luis-adl | 2025-08-18 | Merge branch 'unittests' of https://code.il2.dso.mil/adl-ousd/LDSS/ldss-ui into unittests
+d379486 | luis-adl | 2025-08-18 | Add tests
+08ddd51 | Bay | 2025-08-18 | linting
+0b674cb | Bay | 2025-08-18 | removed unused imports
+86142c2 | Bay | 2025-08-18 | linting changes
+b95937a | Bay | 2025-08-18 | imports update for es-lint
+eda7684 | Bay | 2025-08-18 | added space before comment for linter
+9be4d15 | Bay | 2025-08-18 | updated imports for linting
+3bd6027 | Bay | 2025-08-18 | linting changes
+2a5ad00 | Bay | 2025-08-18 | more linting
+6b9b56e | Bay | 2025-08-18 | unit test linting changes
+6601e34 | Bay | 2025-08-18 | updated yarn.lock
+56da88e | Bay | 2025-08-15 | Merge branch 'master' into unittests
+d39ba59 | Luis Ramirez | 2025-08-14 | Merge branch 'sonarqube-fix' into 'master'
+8481d20 | luis-adl | 2025-08-14 | Refactor middleware.ts for sonarqube Remove need for il4
+ac00b6a | Bay | 2025-08-14 | updated package-lock.json
+ea1158c | Bay | 2025-08-14 | handling merge conflicts
+3ef99a6 | Luis Ramirez | 2025-08-14 | Merge branch 'pipeline-fix' into 'master'
+3723982 | luis-adl | 2025-08-14 | Add new yarn.lock file
+0584bea | luis-adl | 2025-08-14 | Fix linting issue
+1d40bbf | luis-adl | 2025-08-14 | Remove dev token generation scripts to fix trufflehog
+33654a9 | luis-adl | 2025-08-13 | Merge branch 'master' of https://code.il2.dso.mil/adl-ousd/LDSS/ldss-ui
+3b0fb5c | luis-adl | 2025-08-13 | Merge branch 'ctf-input-validation'
+2572759 | Bay Faubion | 2025-08-12 | Merge branch 'bay-sdelements' into 'master'
+9134276 | Bay | 2025-08-12 | removing sonarqube errors
+2b4ff7e | Bay Faubion | 2025-08-12 | Merge branch 'bay-sdelements' into 'master'
+ea656c5 | luis-adl | 2025-08-12 | Implement auth via headers
+689a392 | meganb | 2025-08-11 | Updates
+05262ef | Bay | 2025-08-11 | updated search page to make it client component to allow relative path for server-side API endpoint
+72f5dd0 | Bay Faubion | 2025-08-08 | Merge branch 'bay-sdelements' into 'master'
+d1c6116 | Bay | 2025-08-08 | removed unnecessary logging
+b45c82e | Bay | 2025-08-08 | added logging for invalid path traversal attack
+238c958 | Bay | 2025-08-08 | reworked search pages added server side search function and api endpoint
+a1e3fc3 | meganb | 2025-08-08 | Finished one of the route tests
+15b475d | Bay Faubion | 2025-08-08 | Merge branch 'bay-sdelements' into 'master'
+978cde4 | Bay | 2025-08-07 | added check for ../ file path traversal
+b161736 | Bay | 2025-08-07 | Added hasNullByte check to search page and added cypress test
+d0e12e9 | meganb | 2025-08-05 | Added new unit tests for changed table code
+83112f3 | Bay | 2025-08-05 | removed comments in next.config.js for linting
+de6e208 | Bay | 2025-08-05 | updated middleware to include no-cache headers
+380f8ae | meganb | 2025-08-04 | Lint fixes
+0f41c40 | meganb | 2025-08-04 | updated package.json
+cf0f527 | meganb | 2025-08-04 | Merge branch 'master' of https://code.il2.dso.mil/adl-ousd/LDSS/ldss-ui into unittests
+a5b843a | meganb | 2025-08-04 | All but line 95, which would need refactoring.
+ebb053f | Bay | 2025-08-04 | set reactStrictMode globally
+8e32dc6 | meganb | 2025-08-01 | Finally fixed tests not passing
+5929b4b | Bay Faubion | 2025-07-31 | Merge branch 'bay-sdelements' into 'master'
+a06e177 | Bay | 2025-07-31 | Sonarqube: Readonly props and removing whitespace checks for regex block
+25ab7d1 | Bay | 2025-07-31 | simplifying ALLOWABLE_UTF8_REGEX for sonarqube check
+97d956d | Bay | 2025-07-30 | updated imports for alphabetical import linting rule
+9062c3e | Bay | 2025-07-30 | added Abort Control to fetch requests in client-side components
+ea5b879 | Bay | 2025-07-30 | added isSaneUtf8 check to all server side components and API endpoints
+0b559e9 | Bay | 2025-07-28 | added character count validation to search page
+9a8de32 | meganb | 2025-07-28 | Table updates
+85408e4 | Bay Faubion | 2025-07-24 | Merge branch 'bay-sdelements' into 'master'
+c541203 | Bay Faubion | 2025-07-23 | import linting fix
+5b93de5 | Bay Faubion | 2025-07-23 | import linting fix
+a767968 | Bay Faubion | 2025-07-23 | added toobusy check to middleware
+b9ff73c | Bay Faubion | 2025-07-23 | Merge branch 'bay-sdelements' into 'master'
+89514cb | Bay Faubion | 2025-07-23 | added temporary resolution to bypass @cypress/request-form-data CVE for version 4.0.0
+e7a1ea7 | Bay Faubion | 2025-07-22 | added CCV_BASE_URL env variable
+2467167 | Bay Faubion | 2025-07-21 | added missing CSP policies
+edc5975 | Bay Faubion | 2025-07-21 | Merge branch 'bay-sdelements' into 'master'
+e5baa34 | Bay Faubion | 2025-07-21 | updated spacing for lint
+0e59ce7 | Bay Faubion | 2025-07-21 | updated csp to use next.js example
+3b0d6af | Bay Faubion | 2025-07-17 | added csp and nonce to prevent JSON hijacking
+aa8510e | Bay Faubion | 2025-07-16 | updated server component for GET mapped-terms
+8a26e5f | meganb | 2025-07-14 | progress made on table testing.
+e1d21c4 | meganb | 2025-07-11 | Refactored and unit tests sharebutton
+2f5b0fb | Luis Ramirez | 2025-07-11 | Merge branch 'more-dropdown-options' into 'master'
+e40d4d1 | luis-adl | 2025-07-11 | Add dropdown options from instances API Fix CORS issue for table component
+edcaee4 | meganb | 2025-07-08 | Tweaked header class and made test file
+67299a4 | meganb | 2025-07-08 | Fixed brittle test issues by only testing key class elements, 100% coverage
+908216d | Luis Ramirez | 2025-07-07 | Merge branch 'aws' into 'master'
+e9a54de | luis-adl | 2025-07-07 | Fix nextjs PageProps bug Widen from specific provider to string type
+19cb604 | luis-adl | 2025-07-07 | Fix linting
+dcea830 | meganb | 2025-07-03 | Started refactoring, wrote tests
+00c1166 | meganb | 2025-07-03 | Merge remote-tracking branch 'origin/master' into unittests
+60fc85f | meganb | 2025-07-03 | First commit, started on tests
+64f1269 | Luis Ramirez | 2025-07-03 | Merge branch 'get-xia-data' into 'master'
+0e18799 | luis-adl | 2025-07-03 | Remove testing piece
+2da1200 | Florian Tolk | 2025-07-03 | Added Apache2 License
+bfa9b82 | luis-adl | 2025-07-03 | Move mapping logic to util Next proxy to avoid CORS issues Code cleanup
+f4d1c5b | meganb | 2025-07-02 | Fixed linting issues
+2505c55 | meganb | 2025-07-02 | Added title to generate unique key and fix sonarcube issue
+96d26e7 | luis-adl | 2025-07-02 | Add course controls component
+b241abd | luis-adl | 2025-06-30 | Add search detail page Regen lock files
+b36a68f | luis-adl | 2025-06-26 | Add search page
+45368ad | Luis Ramirez | 2025-06-17 | Merge branch 'bay-dev' into 'master'
+5984efd | luis-adl | 2025-06-17 | Add start.sh entrypoint script Add prod and dev composes
+abf56fd | Bay Faubion | 2025-06-17 | added Dockerfile.dev for docker compose
+ab65778 | Luis Ramirez | 2025-06-06 | Merge branch 'auth' into 'master'
+180c511 | luis.ramirez.ctr | 2025-06-05 | Change moduleResolution in cypress config
+0007511 | luis.ramirez.ctr | 2025-06-03 | Regen package-lock and yarn.lock
+baa8af6 | luis.ramirez.ctr | 2025-06-03 | Update babel
+86c22cb | luis.ramirez.ctr | 2025-05-29 | Update yarn.lock
+0f7af58 | luis.ramirez.ctr | 2025-05-29 | Update linting
+ee60f39 | luis.ramirez.ctr | 2025-05-29 | Update yarn.lock
+92ea6f7 | luis.ramirez.ctr | 2025-05-29 | Debug check for istio headers
+494275e | luis.ramirez.ctr | 2025-05-21 | Regen package-lock
+37980c1 | luis.ramirez.ctr | 2025-05-21 | Regen yarn.lock
+639c2df | luis.ramirez.ctr | 2025-05-21 | Remove babel override
+f6c308c | luis.ramirez.ctr | 2025-05-21 | Update yarn.lock
+2168bc7 | luis.ramirez.ctr | 2025-05-21 | Upgrade babel runtime
+fcafa07 | luis.ramirez.ctr | 2025-05-21 | Move cypress.config.ts Edit test:e2e-ci
+74e63c9 | luis.ramirez.ctr | 2025-05-20 | Add test:e2e-ci
+53e5df8 | spoole | 2025-05-20 | change start script to 3000
+547341d | spoole | 2025-05-20 | reverting back to port 3000
+28691e4 | luis.ramirez.ctr | 2025-05-15 | Add babel override
+38365dd | luis.ramirez.ctr | 2025-05-14 | Add @media
+8dfc1aa | luis.ramirez.ctr | 2025-05-14 | Change @responsive for sonarqube
+220db17 | luis.ramirez.ctr | 2025-05-14 | Merge branch 'master' of https://code.il2.dso.mil/adl-ousd/LDSS/ldss-ui
+936c6af | luis.ramirez.ctr | 2025-05-14 | Update testing-library/dom and jest
+cb08dfc | Luis Ramirez | 2025-05-13 | Merge branch 'revert-517d72a8' into 'master'
+9431a95 | Luis Ramirez | 2025-05-13 | Revert "Upgrade testing library and jest"
+517d72a | luis.ramirez.ctr | 2025-05-13 | Upgrade testing library and jest
+872bdbf | luis.ramirez.ctr | 2025-05-13 | Change id for test
+656e283 | spoole | 2025-05-12 | update port to 80
+5049b0d | luis.ramirez.ctr | 2025-05-09 | Upgrade next to fix vulnerability
+79d2373 | luis.ramirez.ctr | 2025-05-09 | Regen yarn.lock
+a1633a0 | Luis Ramirez | 2025-05-08 | Merge branch 'luis-course-detail' into 'master'
+a81da48 | luis.ramirez.ctr | 2025-05-07 | Suspense fixes
+259bc98 | luis.ramirez.ctr | 2025-05-06 | Fix some linting
+4ea95e0 | luis.ramirez.ctr | 2025-05-01 | Change labels for mapping
+c4d4fbd | luis.ramirez.ctr | 2025-04-30 | Add 'missing' in table mappings Disable source provider dropdown CHange language to toggle
+d2d3028 | luis.ramirez.ctr | 2025-04-25 | Handle json objects that do not have mappings Update all  fallback .json files
+19df3b1 | luis.ramirez.ctr | 2025-04-23 | Big TODO: replace jsons This is a bandaid solution Backend is not returning things how we are expecting Hardcoded jsons being used for now
+ecf55b6 | luis.ramirez.ctr | 2025-04-22 | Add search page
+4460664 | luis.ramirez.ctr | 2025-04-21 | Add course search
+06a4088 | luis.ramirez.ctr | 2025-03-24 | Create UI Mock backend data Rough draft of toggling logic
+deb9471 | luis.ramirez.ctr | 2025-03-05 | Fix linting
+da1a4ff | luis.ramirez.ctr | 2025-03-04 | Add jest dependencies Generate Dropdown test
+45440ba | luis.ramirez.ctr | 2025-03-04 | npm update
+1f3bbf5 | luis.ramirez.ctr | 2025-03-03 | Add react-test-renderer Remove next config hash algos
+489691e | luis.ramirez.ctr | 2025-03-03 | Update next config with md5 hash algorithm
+61dc7fa | luis.ramirez.ctr | 2025-03-03 | Swap SHA-1 to MD5 for tests
+6c46a85 | luis.ramirez.ctr | 2025-02-28 | Reverting back to Node18
+e2e253b | luis.ramirez.ctr | 2025-02-28 | Testing out to see if Node 20 fixes the issue
+f2bc542 | luis.ramirez.ctr | 2025-02-28 | Change test npm script
+d79b24c | luis.ramirez.ctr | 2025-02-28 | Merge branch 'test-unit' Resolve yarn.lock merge conflict
+d1e01fb | luis.ramirez.ctr | 2025-02-28 | Introduce test:unit Install jest
+d33abe8 | Luis Ramirez | 2025-02-27 | Merge branch 'yarn-lock' into 'master'
+d9487e3 | luis-adl | 2025-02-27 | Update yarn.lock after yarn install
+4a50127 | Luis Ramirez | 2025-02-27 | Merge branch 'yarn-install' into 'master'
+20aabd0 | Luis Ramirez | 2025-02-27 | Merge branch 'master' into 'yarn-install'
+d32fa52 | luis-adl | 2025-02-27 | Update yarn-lock
+51af5bd | Luis Ramirez | 2025-02-27 | Merge branch 'nextjs' into 'master'
+7102a34 | luis-adl | 2025-02-27 | Merge remote-tracking branch 'origin/master' into nextjs
+7cfa5ca | luis-adl | 2025-02-27 | Change eslint.config.mjs to .eslintrc.json Satisfy linting rules
+e56468d | Luis Ramirez | 2025-02-27 | Merge branch 'nextjs' into 'master'
+11fc52a | luis-adl | 2025-02-27 | Remove sed commands
+7464514 | Luis Ramirez | 2025-02-26 | Merge branch 'nextjs' into 'master'
+7947f0c | luis-adl | 2025-02-26 | Fix public dir for build-image job
+61c47f6 | Luis Ramirez | 2025-02-26 | Merge branch 'nextjs' into 'master'
+0ad868f | luis-adl | 2025-02-26 | Update font to Inter
+62f1143 | Luis Ramirez | 2025-02-26 | Merge branch 'nextjs' into 'master'
+ee8664c | luis-adl | 2025-02-26 | Update next config file for build-image job
+2d08e8a | Luis Ramirez | 2025-02-26 | Merge branch 'nextjs' into 'master'
+287e7d9 | luis-adl | 2025-02-26 | Change tailwind from ts to js
+18003f3 | Luis Ramirez | 2025-02-26 | Merge branch 'nextjs' into 'master'
+efb07dd | luis-adl | 2025-02-26 | React and Next version changes for the build-image job Change tailwind config to .js
+eab05f2 | Luis Ramirez | 2025-02-26 | Merge branch 'nextjs' into 'master'
+da5422a | luis-adl | 2025-02-26 | Add node_options to yarn build for build-image job
+1428453 | Luis Ramirez | 2025-02-26 | Merge branch 'nextjs' into 'master'
+9a1b250 | luis-adl | 2025-02-26 | Add yarn.lock for dependency-check job
+887216d | Luis Ramirez | 2025-02-25 | Merge branch 'nextjs' into 'master'
+4ae7057 | luis-adl | 2025-02-25 | Change tailwind and postcss versions
+e58dca2 | Luis Ramirez | 2025-02-25 | Merge branch 'nextjs' into 'master'
+1051740 | luis-adl | 2025-02-25 | Remove "password" for trufflehog
+06dfdc2 | Luis Ramirez | 2025-02-25 | Merge branch 'nextjs' into 'master'
+530ec01 | luis-adl | 2025-02-25 | Add ENV NODE_OPTIONS=--openssl-legacy-provider to Dockerfile
+46f7eb0 | Luis Ramirez | 2025-02-25 | Merge branch 'nextjs' into 'master'
+d70aa79 | luis-adl | 2025-02-25 | Update Dockerfile to match ECC
+4ecb3a5 | Luis Ramirez | 2025-02-24 | Merge branch 'nextjs' into 'master'
+a07a67b | luis-adl | 2025-02-24 | Unignoring node_modules
+2b9fd9a | Luis Ramirez | 2025-02-24 | Merge branch 'nextjs' into 'master'
+010d20c | luis-adl | 2025-02-24 | Delete .gitlab-ci.yml Update Dockerfile
+c220a28 | luis-adl | 2025-02-21 | Changing Dockerfile for p1 (test)
+d3a7bac | Luis Ramirez | 2025-02-21 | Merge branch 'nextjs' into 'master'
+d25f88e | luis-adl | 2025-02-21 | Moved project files up one level
+242c0cd | Luis Ramirez | 2025-02-21 | Merge branch 'nextjs' into 'master'
+a7c3a76 | luis-adl | 2025-02-21 | Remove only: nextjs
+7520dac | luis-adl | 2025-02-21 | Update gitlab-ci
+3519e59 | luis-adl | 2025-02-19 | Create gitlab-ci file
+541133e | luis-adl | 2025-02-14 | Add Dockerfile and compose Minor linting stuff Change tab name
+9e8246d | luis-adl | 2025-02-14 | Install cypress
+198c067 | Trey Hayden | 2025-02-12 | Merge branch 'nextjs' of https://code.il2.dso.mil/adl-ousd/ldss/ldss-ui into nextjs
+199f6e3 | Trey Hayden | 2025-02-12 | updating for matching api
+dd4f6e7 | luis-adl | 2025-02-11 | Add base urls and todos
+bc86c42 | luis-adl | 2025-02-10 | Update styling for when there is no mapping data
+9f1a265 | luis-adl | 2025-02-10 | Stub out table data
+ac5e00a | luis-adl | 2025-02-10 | UI dropdown stub - Attempts to make network request for dropdown data On fail, resorts to dummy data
+7cd3f39 | zach | 2025-02-07 | Merge branch 'nextjs' of https://code.il2.dso.mil/adl-ousd/LDSS/ldss-ui into nextjs
+ee43aa1 | zach | 2025-02-07 | added logic to control compare request
+b3ef8c5 | bay | 2025-02-06 | removing useEffect unused import
+2737faf | zach | 2025-02-04 | fixed view issue and junktable issue
+64fe664 | zach | 2025-02-04 | added scrollable table body
+56cce22 | zach | 2025-02-03 | Fixed Alignment Issue
+4164ed2 | luis-adl | 2025-01-31 | Update to N/A if no relationship Update data to be more realistic
+840712a | luis-adl | 2025-01-30 | Update dropdown styling
+40efc55 | luis-adl | 2025-01-29 | Add suport for uid_chain from dropdown Fix styling
+dfc6655 | luis-adl | 2025-01-27 | Darker input Header spacing (needs more)
+f5e23cd | luis-adl | 2025-01-27 | Add dropdown names Update text styling Add badges Add mock json file
+7959e2c | luis-adl | 2025-01-24 | Add table and dropdown
+fc788ca | luis-adl | 2025-01-10 | Initialize nextjs
+11739d8 | Florian Tolk | 2024-08-19 | Initial commit

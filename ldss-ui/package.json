@@ -1,0 +1,61 @@
+{
+  "name": "ldss-ui",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "lint": "npx eslint .",
+    "test:unit": "jest --coverage --watchAll=false",
+    "test:e2e-ci": "TS_NODE_PROJECT=$PWD/cypress/tsconfig.json cypress run --headless --config-file cypress/config/pipeline.config.js --config baseUrl=$ZAP_URL",
+    "test:e2e-local": "cypress run --headless --config-file cypress/config/local.config.js --config baseUrl=http://localhost:3000",
+    "test:e2e-local-ci": "cypress run --headless --config-file cypress/config/pipeline.config.js --config baseUrl=http://localhost:3000"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.2.4",
+    "@heroicons/react": "^1.0.6",
+    "flowbite-react": "^0.10.2",
+    "form-data": "4.0.4",
+    "jose": "^6.0.11",
+    "next": "^15.5.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-test-renderer": "^18.2.0",
+    "toobusy-js": "^0.5.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.4",
+    "@babel/runtime": "^7.28.4",
+    "@eslint/eslintrc": "^3",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19",
+    "@types/toobusy-js": "^0.5.4",
+    "autoprefixer": "^10.4.20",
+    "cypress": "^14.5.2",
+    "dotenv": "^17.2.1",
+    "eslint": "^8.6.0",
+    "eslint-config-next": "15.3.3",
+    "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
+    "isomorphic-fetch": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jsdom-testing-mocks": "^1.13.1",
+    "jsonwebtoken": "^9.0.2",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.0.7",
+    "ts-jest": "^29.2.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5",
+    "undici": "^6.21.3"
+  },
+  "resolutions": {
+    "form-data": "4.0.4"
+  }
+}

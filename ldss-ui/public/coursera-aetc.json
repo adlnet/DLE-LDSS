@@ -1,0 +1,519 @@
+[
+  {
+    "source": {
+      "alias": "Course ID",
+      "definition": "Unique identifier of this course in its native catalog"
+    },
+    "target": {
+      "alias": "Course ID",
+      "definition": "Unique identifier for a course."
+    },
+    "relationship": true
+  },
+  {
+    "source": {
+      "alias": "Specialization Ids",
+      "definition": "identifier of the series of related courses"
+    },
+    "target": {
+      "alias": "Course ID",
+      "definition": "Unique identifier for a course."
+    },
+    "relationship": true
+  },
+  {
+    "source": {
+      "alias": "Course ID",
+      "definition": "Unique identifier of this course in its native catalog"
+    },
+    "target": {
+      "alias": "Display_Course_ID",
+      "definition": "Display identifier for a course."
+    },
+    "relationship": true
+  },
+  {
+    "source": {
+      "alias": "Specialization Ids",
+      "definition": "identifier of the series of related courses"
+    },
+    "target": {
+      "alias": "Display_Course_ID",
+      "definition": "Display identifier for a course."
+    },
+    "relationship": true
+  },
+  {
+    "source": {
+      "alias": "Course ID",
+      "definition": "Unique identifier of this course in its native catalog"
+    },
+    "target": {
+      "alias": "Migrated_Rec_Id",
+      "definition": "An identifier from a previous catalog assigned to a migrated course."
+    },
+    "relationship": true
+  },
+  {
+    "source": {
+      "alias": "Specialization Ids",
+      "definition": "identifier of the series of related courses"
+    },
+    "target": {
+      "alias": "Migrated_Rec_Id",
+      "definition": "An identifier from a previous catalog assigned to a migrated course."
+    },
+    "relationship": true
+  },
+  {
+    "source": {
+      "alias": "CourseAudience",
+      "definition": "Actors and attributes of actors that align with the course"
+    },
+    "target": {
+      "alias": "Organization",
+      "definition": "An actor that represents a larger group of actors, infrastructure, and more."
+    },
+    "relationship": true
+  },
+  {
+    "source": {
+      "alias": "Course ID",
+      "definition": "Unique identifier of this course in its native catalog"
+    },
+    "target": {
+      "alias": "Resp_Org_ID",
+      "definition": "An identifier for the organization maintaining a course."
+    },
+    "relationship": true
+  },
+  {
+    "source": {
+      "alias": "Specialization Ids",
+      "definition": "identifier of the series of related courses"
+    },
+    "target": {
+      "alias": "Resp_Org_ID",
+      "definition": "An identifier for the organization maintaining a course."
+    },
+    "relationship": true
+  },
+  {
+    "source": {
+      "alias": "Course ID",
+      "definition": "Unique identifier of this course in its native catalog"
+    },
+    "target": {
+      "alias": "Course_Title",
+      "definition": "Name assigned to a course."
+    },
+    "relationship": true
+  },
+  {
+    "source": {
+      "alias": "Specialization Ids",
+      "definition": "identifier of the series of related courses"
+    },
+    "target": {
+      "alias": "Course_Title",
+      "definition": "Name assigned to a course."
+    },
+    "relationship": true
+  },
+  {
+    "source": {
+      "alias": "University / Industry Partner Name",
+      "definition": "contributor of the resource through a partnership"
+    }
+  },
+  {
+    "source": {
+      "alias": "Thumbnail",
+      "definition": "resolvable link to an image that exemplifies the resource"
+    }
+  },
+  {
+    "source": {
+      "alias": "Subtitle Language",
+      "definition": "Language used in this resource's subtitles, wherever applicable"
+    }
+  },
+  {
+    "source": {
+      "alias": "Sub-Domain",
+      "definition": "An original cluster of content that is accessible via URL"
+    }
+  },
+  {
+    "source": {
+      "alias": "StartDate",
+      "definition": "specific date when a course officially begins, marking the point where new course materials are released and students can actively start engaging with the learning content "
+    }
+  },
+  {
+    "source": {
+      "alias": "Specialization URL",
+      "definition": "URL of the series of related courses where more information can be found"
+    }
+  },
+  {
+    "source": {
+      "alias": "Specialization Description",
+      "definition": "description of the specialization of this resource"
+    }
+  },
+  {
+    "source": {
+      "alias": "Specialization",
+      "definition": "name of the series of related courses in which this  intended to help an agent master a topic"
+    }
+  },
+  {
+    "source": {
+      "alias": "SOURCESYSTEM",
+      "definition": "Original system where this resource was released"
+    }
+  },
+  {
+    "source": {
+      "alias": "Skills Learned",
+      "definition": "Names of skills that are taught by this resource"
+    }
+  },
+  {
+    "source": {
+      "alias": "Partner Type",
+      "definition": "type of relationship through which this resource was obtained.  Includes learning providers, universities, and accredited institutions"
+    }
+  },
+  {
+    "source": {
+      "alias": "Learning Hours by instructor",
+      "definition": "the total amount of time the instructor spends actively delivering instruction to students in this resource"
+    }
+  },
+  {
+    "source": {
+      "alias": "Instructor",
+      "definition": "the instructor of the resource"
+    }
+  },
+  {
+    "source": {
+      "alias": "Graded Peer Reviews",
+      "definition": "true if students assess and grade each other's assignments in this resource"
+    }
+  },
+  {
+    "source": {
+      "alias": "Domain",
+      "definition": "A larger cluster of content that is accessible via URL"
+    }
+  },
+  {
+    "source": {
+      "alias": "Difficulty Level",
+      "definition": "Level of difficulty (beginner, intermediate, or advanced) obtained after using skill scoring"
+    }
+  },
+  {
+    "source": {
+      "alias": "DeliveryMode",
+      "definition": "collection of attributes of a resource having to do with student activity, instructor involvement, timing, and specific components."
+    }
+  },
+  {
+    "source": {
+      "alias": "CoursePrerequisites",
+      "definition": "specific conditions that must be met before the course is available"
+    }
+  },
+  {
+    "source": {
+      "alias": "Course URL",
+      "definition": "Link an actor uses to access the course"
+    }
+  },
+  {
+    "source": {
+      "alias": "Course Rating",
+      "definition": "Aggregate of all individual ratings of the course (1-5)"
+    }
+  },
+  {
+    "source": {
+      "alias": "Course Name",
+      "definition": "The name given to the course by its creator"
+    }
+  },
+  {
+    "source": {
+      "alias": "Course Language",
+      "definition": "A written language the course is in, implied that any audio is also of this language"
+    }
+  },
+  {
+    "source": {
+      "alias": "Course Description",
+      "definition": "Text that describes the course for purposes of summarization"
+    }
+  },
+  {
+    "source": {
+      "alias": "Certificate Enabled",
+      "definition": "Whether the resource has a specific certificate applied to it"
+    }
+  },
+  {
+    "source": {
+      "alias": "Avg Total Learning Hours",
+      "definition": "The average amount of time taken by an actor to complete the resource"
+    }
+  },
+  {
+    "source": {
+      "alias": "Active Sessions",
+      "definition": "Number of actors that are actively taking the resource.  Likely defined as post-enrollment but pre-completion or pre-expiration."
+    }
+  },
+  {
+    "target": {
+      "alias": "AC_Clothing_Req",
+      "definition": "A request indicating special clothing required to participate in a course."
+    }
+  },
+  {
+    "target": {
+      "alias": "ADSC Description",
+      "definition": "The duration of the program this course is associated with, in regards to their ADSC."
+    }
+  },
+  {
+    "target": {
+      "alias": "AFSC",
+      "definition": "A code identifying a specific Air Force role based on required competencies."
+    }
+  },
+  {
+    "target": {
+      "alias": "Aircraft_ID",
+      "definition": "Unique aircraft identifier."
+    }
+  },
+  {
+    "target": {
+      "alias": "App Created By",
+      "definition": "Entity responsible for application development."
+    }
+  },
+  {
+    "target": {
+      "alias": "Attachments",
+      "definition": "Linked supplementary digital files."
+    }
+  },
+  {
+    "target": {
+      "alias": "Category",
+      "definition": "Grouping based on shared characteristics."
+    }
+  },
+  {
+    "target": {
+      "alias": "BCI_ID",
+      "definition": "Unique identifier for BCI."
+    }
+  },
+  {
+    "target": {
+      "alias": "Class_Frequency",
+      "definition": "Rate of class occurrence."
+    }
+  },
+  {
+    "target": {
+      "alias": "Class_Start_Date",
+      "definition": "Initial calendar date of class."
+    }
+  },
+  {
+    "target": {
+      "alias": "Clearance_Level",
+      "definition": "Authorized access classification tier."
+    }
+  },
+  {
+    "target": {
+      "alias": "Content Type",
+      "definition": "Classification of content based on format or purpose."
+    }
+  },
+  {
+    "target": {
+      "alias": "Course_Length",
+      "definition": "Duration of a course from start to end."
+    }
+  },
+  {
+    "target": {
+      "alias": "Course_Maintainer",
+      "definition": "Entity responsible for course management."
+    }
+  },
+  {
+    "target": {
+      "alias": "Course_Status",
+      "definition": "Current state of a course."
+    }
+  },
+  {
+    "target": {
+      "alias": "Created",
+      "definition": "Initiation of a course."
+    }
+  },
+  {
+    "target": {
+      "alias": "Created By",
+      "definition": "Entity resposible for course creation."
+    }
+  },
+  {
+    "target": {
+      "alias": "Display_New",
+      "definition": "A UI flag indicating if course is newly created."
+    }
+  },
+  {
+    "target": {
+      "alias": "DoD_Code",
+      "definition": "Identifier assigned by the Department of Defense."
+    }
+  },
+  {
+    "target": {
+      "alias": "Encoded Absolute URL",
+      "definition": "Fully qualified web address with encoded characters."
+    }
+  },
+  {
+    "target": {
+      "alias": "File Type",
+      "definition": "Format classification of a digital file."
+    }
+  },
+  {
+    "target": {
+      "alias": "Group_ID",
+      "definition": "Unique identifier assigned to a group."
+    }
+  },
+  {
+    "target": {
+      "alias": "Last_Change_Date",
+      "definition": "Most recent date of item modification."
+    }
+  },
+  {
+    "target": {
+      "alias": "Location",
+      "definition": "Specific place where an activity or item exists."
+    }
+  },
+  {
+    "target": {
+      "alias": "Location_Description",
+      "definition": "Text detailing characteristics of a location."
+    }
+  },
+  {
+    "target": {
+      "alias": "MASL",
+      "definition": "A code signifing training related to combat survival skills."
+    }
+  },
+  {
+    "target": {
+      "alias": "Modified",
+      "definition": "Changed from a previous state."
+    }
+  },
+  {
+    "target": {
+      "alias": "Modified By",
+      "definition": "Lat entity to modify course."
+    }
+  },
+  {
+    "target": {
+      "alias": "Office_Symbol",
+      "definition": "Abbreviated code identifying an office or unit."
+    }
+  },
+  {
+    "target": {
+      "alias": "Office_Telephone",
+      "definition": "Phone number assigned to an office"
+    }
+  },
+  {
+    "target": {
+      "alias": "Path",
+      "definition": "File location reference within a directory structure."
+    }
+  },
+  {
+    "target": {
+      "alias": "PDS",
+      "definition": "A system for manaing training data for Air Force personnel."
+    }
+  },
+  {
+    "target": {
+      "alias": "Security",
+      "definition": "Measures taken to protect against unauthorized access."
+    }
+  },
+  {
+    "target": {
+      "alias": "Status",
+      "definition": "Current state of a process."
+    }
+  },
+  {
+    "target": {
+      "alias": "Title",
+      "definition": "Name of a course."
+    }
+  },
+  {
+    "target": {
+      "alias": "Training_Program_Code",
+      "definition": "Unique alphanumeric code representing a training program."
+    }
+  },
+  {
+    "target": {
+      "alias": "Training_Program_Title",
+      "definition": "Name of a training program."
+    }
+  },
+  {
+    "target": {
+      "alias": "URL Path",
+      "definition": "Specific route within a website URL."
+    }
+  },
+  {
+    "target": {
+      "alias": "Web_Active",
+      "definition": "Boolean depicting if course is online"
+    }
+  },
+  {
+    "target": {
+      "alias": "Web_Link",
+      "definition": "URL that directs to a web page."
+    }
+  }
+]

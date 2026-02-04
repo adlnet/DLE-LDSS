@@ -1,0 +1,354 @@
+[
+  {
+    "source": {
+      "alias": "Duration",
+      "definition": "The amount of calendar time necessary to complete the resource"
+    },
+    "target": {
+      "alias": "Time_Required",
+      "definition": "time needed to complete including context"
+    },
+    "relationship": true
+  },
+  {
+    "source": {
+      "alias": "CourseAudience",
+      "definition": "intended actors this resource is for"
+    },
+    "target": {
+      "alias": "Offered_By",
+      "definition": "actor that provides this"
+    },
+    "relationship": true
+  },
+  {
+    "source": {
+      "alias": "SOURCESYSTEM",
+      "definition": "The name of the system on which this course is located"
+    },
+    "target": {
+      "alias": "Module",
+      "definition": "parts of a course"
+    },
+    "relationship": true
+  },
+  {
+    "source": {
+      "alias": "LearningResourceIdentifier",
+      "definition": "A unique identifier for the course within its catalog"
+    },
+    "target": {
+      "alias": "Course_ID",
+      "definition": "A unique identifier assigned to a specific course object"
+    },
+    "relationship": true
+  },
+  {
+    "source": {
+      "alias": "LearningResourceDescription",
+      "definition": "summary of the course"
+    },
+    "target": {
+      "alias": "Module",
+      "definition": "parts of a course"
+    },
+    "relationship": true
+  },
+  {
+    "source": {
+      "alias": "AccreditedBy",
+      "definition": "actor that accredited the resource"
+    },
+    "target": {
+      "alias": "Offered_By",
+      "definition": "actor that provides this"
+    },
+    "relationship": true
+  },
+  {
+    "source": {
+      "alias": "POC",
+      "definition": "Actor responsible for handing communication about this resource"
+    },
+    "target": {
+      "alias": "Audience",
+      "definition": "Group of actors receiving content"
+    },
+    "relationship": true
+  },
+  {
+    "source": {
+      "alias": "Instance",
+      "definition": "unique secondary identifier that determines which of the unique times this course was deployed this is"
+    },
+    "target": {
+      "alias": "Course_ID",
+      "definition": "A unique identifier assigned to a specific course object"
+    },
+    "relationship": true
+  },
+  {
+    "source": {
+      "alias": "EndDate",
+      "definition": "The date the instruction ends and the resources are no longer accessible"
+    }
+  },
+  {
+    "source": {
+      "alias": "DeliveryMode",
+      "definition": "The modality in which the resource is shown to the audience"
+    }
+  },
+  {
+    "source": {
+      "alias": "CourseSubjectMatter",
+      "definition": "The topics the resource covers"
+    }
+  },
+  {
+    "source": {
+      "alias": "CoursePrerequisites",
+      "definition": "Necessary resources or skills prior needed prior to taking this resource"
+    }
+  },
+  {
+    "source": {
+      "alias": "CatalogURL",
+      "definition": "specific and resolvable link to the resource within a specific catalog"
+    }
+  },
+  {
+    "source": {
+      "alias": "Thumbnail",
+      "definition": "resolvable link to an image that exemplifies the resource"
+    }
+  },
+  {
+    "source": {
+      "alias": "Location",
+      "definition": "A physical or virtual location where the resource resides"
+    }
+  },
+  {
+    "source": {
+      "alias": "LearningResourceName",
+      "definition": "the proper name of this resource"
+    }
+  },
+  {
+    "source": {
+      "alias": "StartDate",
+      "definition": "The date the instruction begins and the resources are accessible"
+    }
+  },
+  {
+    "target": {
+      "alias": "Accredited_By",
+      "definition": "Endorsement to an actor or group by an accrediting body"
+    }
+  },
+  {
+    "target": {
+      "alias": "Controller",
+      "definition": "Actor in authority"
+    }
+  },
+  {
+    "target": {
+      "alias": "Course_URL",
+      "definition": "An object that directs to a course object online"
+    }
+  },
+  {
+    "target": {
+      "alias": "Description",
+      "definition": "An explanation of an object"
+    }
+  },
+  {
+    "target": {
+      "alias": "Duration",
+      "definition": "An object representing a unit of time that indicates length"
+    }
+  },
+  {
+    "target": {
+      "alias": "End_Date",
+      "definition": "Time event ends"
+    }
+  },
+  {
+    "target": {
+      "alias": "HasEvent",
+      "definition": "became a temporal and resourced event"
+    }
+  },
+  {
+    "target": {
+      "alias": "HasPart",
+      "definition": "contains piece of content"
+    }
+  },
+  {
+    "target": {
+      "alias": "Instructor",
+      "definition": "actor involved in teaching"
+    }
+  },
+  {
+    "target": {
+      "alias": "IsEventOf",
+      "definition": "came from a learning object"
+    }
+  },
+  {
+    "target": {
+      "alias": "IsPartOf",
+      "definition": "piece contained within larger content"
+    }
+  },
+  {
+    "target": {
+      "alias": "IsRelatedTo",
+      "definition": "connected relationship"
+    }
+  },
+  {
+    "target": {
+      "alias": "Language",
+      "definition": "distinct communication type"
+    }
+  },
+  {
+    "target": {
+      "alias": "Learning_Event_Type",
+      "definition": "content that is temporal and resourced"
+    }
+  },
+  {
+    "target": {
+      "alias": "Learning_Resource_Type",
+      "definition": "content type that is shareable and not resourced"
+    }
+  },
+  {
+    "target": {
+      "alias": "Location",
+      "definition": "real or virtual address"
+    }
+  },
+  {
+    "target": {
+      "alias": "Owned_By",
+      "definition": "actor that owns this"
+    }
+  },
+  {
+    "target": {
+      "alias": "Prerequisite_Competencies",
+      "definition": "competency learner possesses before consuming activity"
+    }
+  },
+  {
+    "target": {
+      "alias": "Prerequisites",
+      "definition": "requirements before consuming activity"
+    }
+  },
+  {
+    "target": {
+      "alias": "Procedure_MIP_Series",
+      "definition": "set of Maintenance Index Pages that outline the scheduled maintenance tasks for specific equipment or systems."
+    }
+  },
+  {
+    "target": {
+      "alias": "Section",
+      "definition": "A part of an application"
+    }
+  },
+  {
+    "target": {
+      "alias": "Series",
+      "definition": "group of related activities"
+    }
+  },
+  {
+    "target": {
+      "alias": "Subcategory",
+      "definition": "hierarchy level beneath category"
+    }
+  },
+  {
+    "target": {
+      "alias": "Subject",
+      "definition": "domain hierarchy level above topic"
+    }
+  },
+  {
+    "target": {
+      "alias": "Subject_Grade_Level",
+      "definition": "specific educational stage"
+    }
+  },
+  {
+    "target": {
+      "alias": "Subject_Reading_Level",
+      "definition": "specific ability in reading"
+    }
+  },
+  {
+    "target": {
+      "alias": "tag",
+      "definition": "word used to distinguish"
+    }
+  },
+  {
+    "target": {
+      "alias": "Teaches",
+      "definition": "provides an opportunity for learning"
+    }
+  },
+  {
+    "target": {
+      "alias": "Thumbnail",
+      "definition": "summary image"
+    }
+  },
+  {
+    "target": {
+      "alias": "Title",
+      "definition": "name"
+    }
+  },
+  {
+    "target": {
+      "alias": "Use_Rights",
+      "definition": "rules for using"
+    }
+  },
+  {
+    "target": {
+      "alias": "Delivery_Method",
+      "definition": "How content is distributed to actors"
+    }
+  },
+  {
+    "target": {
+      "alias": "Object_ID",
+      "definition": "unique identifier of an object"
+    }
+  },
+  {
+    "target": {
+      "alias": "Prerequisite_Learning_Resources",
+      "definition": "learning activity before consuming activity"
+    }
+  },
+  {
+    "target": {
+      "alias": "Start_Date",
+      "definition": "time event begins"
+    }
+  }
+]

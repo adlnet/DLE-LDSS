@@ -1,0 +1,57 @@
+[
+    {
+        "source": {
+          "alias": "Instructor123",
+          "definition": "A unique identifier for the course within its catalog"
+        },
+        "target": {
+          "alias": "Teacher",
+          "definition": "Unique identifier of this course in its catalog"
+        },
+        "relationship": true
+      },
+      {
+        "source": {
+          "alias": "Provider",
+          "definition": "summary of the course"
+        },
+        "target": {
+          "alias": "Contributor",
+          "definition": "identifier of the series of related courses"
+        },
+        "relationship": true
+      },
+      {
+        "source": {
+          "alias": "Start Date",
+          "definition": "Date when the course starts"
+        },
+        "target": {
+          "alias": "Commencement Date",
+          "definition": "Date when the course begins"
+        },
+        "relationship": true
+      },
+      {
+        "source": {
+          "alias": "End Date",
+          "definition": "Date when the course ends"
+        },
+        "target": {
+          "alias": "Conclusion Date",
+          "definition": "Date when the course finishes"
+        },
+        "relationship": true
+      },
+      {
+        "source": {
+          "alias": "Course Code",
+          "definition": "Date when the course ends"
+        },
+        "target": {
+          "alias": "Class Code",
+          "definition": "Date when the course finishes"
+        },
+        "relationship": true
+      }
+]

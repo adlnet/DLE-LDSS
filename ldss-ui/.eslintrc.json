@@ -1,0 +1,45 @@
+{
+    // "ignoreDuringBuilds": true,
+    "extends": [
+      "next/core-web-vitals",
+      "plugin:jsx-a11y/recommended"
+    ],
+    "plugins": [
+      "sort-imports-es6-autofix",
+      "jsx-a11y"
+    ],
+    "rules": {
+      "react-hooks/exhaustive-deps": "off",
+      "react-hooks/rules-of-hooks": "off",
+      "react/no-unescaped-entities": 0,
+      "sort-imports-es6-autofix/sort-imports-es6": [
+        2,
+        {
+          "ignoreCase": false,
+          "ignoreMemberSort": false,
+          "memberSyntaxSortOrder": [
+            "none",
+            "all",
+            "multiple",
+            "single"
+          ]
+        }
+      ],
+      "lines-around-comment": [
+        "error",
+        {
+          "beforeBlockComment": true,
+          "afterBlockComment": true,
+          "beforeLineComment": true,
+          "afterLineComment": false,
+          "allowBlockStart": true,
+          "allowBlockEnd": true,
+          "allowObjectStart": true,
+          "allowObjectEnd": true,
+          "allowArrayStart": true,
+          "allowArrayEnd": true
+        }
+      ]
+    }
+  }
+  

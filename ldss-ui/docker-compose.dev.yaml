@@ -1,0 +1,14 @@
+services:
+  nextjs:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"         
+    user: root
+    volumes:
+      - ./:/app             
+      - /app/node_modules
+    environment:
+      NODE_ENV: development
+    command: yarn dev      

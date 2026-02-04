@@ -1,0 +1,343 @@
+[
+    {
+        "source": {
+            "alias": "LearningResourceIdentifier",
+            "definition": "A unique identifier for the course within its catalog"
+        },
+        "target": {
+            "alias": "Course ID",
+            "definition": "Unique identifier of this course in its catalog"
+        },
+        "relationship": true
+    },
+    {
+        "source": {
+            "alias": "LearningResourceDescription",
+            "definition": "summary of the course"
+        },
+        "target": {
+            "alias": "Specialization Ids",
+            "definition": "identifier of the series of related courses"
+        },
+        "relationship": true
+    },
+    {
+        "source": {
+            "alias": "SOURCESYSTEM",
+            "definition": "The name of the system on which this course is located"
+        },
+        "target": {
+            "alias": "Specialization Ids",
+            "definition": "identifier of the series of related courses"
+        },
+        "relationship": true
+    },
+    {
+        "source": {
+            "alias": "CatalogURL",
+            "definition": "specific and resolvable link to the course within a specific catalog"
+        },
+        "target": {
+            "alias": "Course URL",
+            "definition": "Link used to access the course"
+        },
+        "relationship": true
+    },
+    {
+        "source": {
+            "alias": "EndDate",
+            "definition": "The date the instruction ends and the resources are no longer accessible"
+        },
+        "target": {
+            "alias": "EndDate",
+            "definition": "specific date when a course officially ends, marking the point where course materials are no longer available and students can no longer interact with them"
+        },
+        "relationship": true
+    },
+    {
+        "source": {
+            "alias": "Thumbnail",
+            "definition": "resolvable link to an image that exemplifies the resource"
+        },
+        "target": {
+            "alias": "Thumbnail",
+            "definition": "resolvable link to an image that exemplifies the resource"
+        },
+        "relationship": true
+    },
+    {
+        "source": {
+            "alias": "AccreditedBy",
+            "definition": "actor that accredited the resource"
+        },
+        "target": {
+            "alias": "CourseAudience",
+            "definition": "Actors and attributes of actors that align with the course"
+        },
+        "relationship": true
+    },
+    {
+        "source": {
+            "alias": "CourseAudience",
+            "definition": "intended actors this resource is for"
+        },
+        "target": {
+            "alias": "CourseAudience",
+            "definition": "Actors and attributes of actors that align with the course"
+        },
+        "relationship": true
+    },
+    {
+        "source": {
+            "alias": "POC",
+            "definition": "Actor responsible for handing communication about this resource"
+        }
+    },
+    {
+        "source": {
+            "alias": "StartDate",
+            "definition": "The date the instruction begins and the resources are accessible"
+        }
+    },
+    {
+        "source": {
+            "alias": "Duration",
+            "definition": "The amount of calendar time necessary to complete the resource"
+        }
+    },
+    {
+        "source": {
+            "alias": "DeliveryMode",
+            "definition": "The modality in which the resource is shown to the audience"
+        }
+    },
+    {
+        "source": {
+            "alias": "CourseSubjectMatter",
+            "definition": "The topics the resource covers"
+        }
+    },
+    {
+        "source": {
+            "alias": "CoursePrerequisites",
+            "definition": "Necessary resources or skills prior needed prior to taking this resource"
+        }
+    },
+    {
+        "source": {
+            "alias": "Location",
+            "definition": "A physical or virtual location where the resource resides"
+        }
+    },
+    {
+        "source": {
+            "alias": "LearningResourceName",
+            "definition": "the proper name of this resource"
+        }
+    },
+    {
+        "target": {
+            "alias": "University / Industry Partner Name",
+            "definition": "contributor of the resource through a partnership"
+        }
+    },
+    {
+        "target": {
+            "alias": "Availabilty Type",
+            "definition": "Indicator of how readily available the course is, such that barriers to taking the course instantly are defined"
+        }
+    },
+    {
+        "target": {
+            "alias": "Active Sessions",
+            "definition": "Number of actors that are actively taking the resource.  Likely defined as post-enrollment but pre-completion or pre-expiration."
+        }
+    },
+    {
+        "target": {
+            "alias": "Avg Total Learning Hours",
+            "definition": "The average amount of time taken by an actor to complete the resource"
+        }
+    },
+    {
+        "target": {
+            "alias": "Certificate Enabled",
+            "definition": "Whether the resource has a specific certificate applied to it"
+        }
+    },
+    {
+        "target": {
+            "alias": "Course Description",
+            "definition": "Text that describes the course for purposes of summarization"
+        }
+    },
+    {
+        "target": {
+            "alias": "Course Language",
+            "definition": "A written language the course is in, implied that any audio is also of this language"
+        }
+    },
+    {
+        "target": {
+            "alias": "Course Name",
+            "definition": "The name given to the course by its creator"
+        }
+    },
+    {
+        "target": {
+            "alias": "Course Rating",
+            "definition": "Aggregate of all individual ratings of the course (1-5)"
+        }
+    },
+    {
+        "target": {
+            "alias": "CoursePrerequisites",
+            "definition": "specific conditions that must be met before the course is available"
+        }
+    },
+    {
+        "target": {
+            "alias": "DeliveryMode",
+            "definition": "collection of attributes of a resource having to do with student activity, instructor involvement, timing, and specific components."
+        }
+    },
+    {
+        "target": {
+            "alias": "Difficulty Level",
+            "definition": "Level of difficulty (beginner, intermediate, or advanced) obtained after using skill scoring"
+        }
+    },
+    {
+        "target": {
+            "alias": "Subtitle Language",
+            "definition": "Language used in this resource's subtitles, wherever applicable"
+        }
+    },
+    {
+        "target": {
+            "alias": "Sub-Domain",
+            "definition": "An original cluster of content that is accessible via URL"
+        }
+    },
+    {
+        "target": {
+            "alias": "StartDate",
+            "definition": "specific date when a course officially begins, marking the point where new course materials are released and students can actively start engaging with the learning content "
+        }
+    },
+    {
+        "target": {
+            "alias": "Specialization URL",
+            "definition": "URL of the series of related courses where more information can be found"
+        }
+    },
+    {
+        "target": {
+            "alias": "Specialization Description",
+            "definition": "description of the specialization of this resource"
+        }
+    },
+    {
+        "target": {
+            "alias": "Specialization",
+            "definition": "name of the series of related courses in which this  intended to help an agent master a topic"
+        }
+    },
+    {
+        "target": {
+            "alias": "SOURCESYSTEM",
+            "definition": "Original system where this resource was released"
+        }
+    },
+    {
+        "target": {
+            "alias": "Skills Learned",
+            "definition": "Names of skills that are taught by this resource"
+        }
+    },
+    {
+        "target": {
+            "alias": "Partner Type",
+            "definition": "type of relationship through which this resource was obtained.  Includes learning providers, universities, and accredited institutions"
+        }
+    },
+    {
+        "target": {
+            "alias": "Learning Hours by instructor",
+            "definition": "the total amount of time the instructor spends actively delivering instruction to students in this resource"
+        }
+    },
+    {
+        "target": {
+            "alias": "Instructor",
+            "definition": "the instructor of the resource"
+        }
+    },
+    {
+        "target": {
+            "alias": "Graded Peer Reviews",
+            "definition": "true if students assess and grade each other's assignments in this resource"
+        }
+    },
+    {
+        "target": {
+            "alias": "Domain",
+            "definition": "A larger cluster of content that is accessible via URL"
+        }
+    },
+    {
+        "source": {
+          "alias": "Instructor",
+          "definition": "A unique identifier for the course within its catalog"
+        },
+        "target": {
+          "alias": "Teacher",
+          "definition": "Unique identifier of this course in its catalog"
+        },
+        "relationship": true
+      },
+      {
+        "source": {
+          "alias": "Provider",
+          "definition": "summary of the course"
+        },
+        "target": {
+          "alias": "Contributor",
+          "definition": "identifier of the series of related courses"
+        },
+        "relationship": true
+      },
+      {
+        "source": {
+          "alias": "Start Date",
+          "definition": "Date when the course starts"
+        },
+        "target": {
+          "alias": "Commencement Date",
+          "definition": "Date when the course begins"
+        },
+        "relationship": true
+      },
+      {
+        "source": {
+          "alias": "End Date",
+          "definition": "Date when the course ends"
+        },
+        "target": {
+          "alias": "Conclusion Date",
+          "definition": "Date when the course finishes"
+        },
+        "relationship": true
+      },
+      {
+        "source": {
+          "alias": "Course Code",
+          "definition": "Date when the course ends"
+        },
+        "target": {
+          "alias": "Class Code",
+          "definition": "Date when the course finishes"
+        },
+        "relationship": true
+      }
+]
