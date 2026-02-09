@@ -1,0 +1,249 @@
+
+def mapping_search(request):
+    # List to store all resulting NeoTerms
+    results = []
+
+    try:
+        # Ex.{"source": "jko-0x00000002", "target": "p2281-0x0000001"}
+        source_name = request.GET.get('source').split("-", 1)[0]
+        source_id = request.GET.get('source').split("-", 1)[1]
+        target_id = request.GET.get('target').split("-", 1)[1]
+    except Exception as e:
+        logger.exception("Error in mapping_search; malformed parameters: %s", e)
+        return JsonResponse({"error": "Malformed parameters"}, status=400)
+
+    # Get all NeoMapping Nodes where uid_chain == source_id
+    all_mapping_nodes = NeoMapping.nodes.all()
+    neomapping_nodes = [node for node in all_mapping_nodes if node.uid_chain == source_id]
+
+    # Source is LCV
+    if neomapping_nodes:
+        for neomapping_node in neomapping_nodes:
+            node_definition = neomapping_node.definition
+            node_alias = "none"
+
+            if neomapping_node.aliases:
+                node_alias = neomapping_node.aliases[0]
+
+            try:
+                # Fetch the related "neoterm" node via the MAP_TO relationship
+                neoterm_query = """
+                MATCH (nm:NeoMapping)-[:MAPS_TO]->(neoterm:NeoTerm)
+                WHERE nm.definition = $node_definition
+                RETURN neoterm
+                """
+                neoterm_result = db.cypher_query(neoterm_query, {"node_definition": node_definition})
+                # Pull-out neoterm
+                neoterm = neoterm_result[0][0][0]
+            except Exception as e:
+                logger.exception("Error in mapping_search; source is lcv; neoterm_query: %s", e)
+                return JsonResponse({"error": STR_DATABASE_QUERY_ERROR}, status=500)
+
+            # Find neomapping that has uid_chain = target_id and return if it's neoterm.uid = the current neoterm.uid
+            current_nt_id = neoterm["uid"]
+            neomapping_query = """
+            MATCH (nm:NeoMapping)-[:MAPS_TO]->(nt:NeoTerm)
+            WHERE nm.uid_chain = $target_id AND nt.uid = $current_nt_id
+            RETURN nm
+            """
+            target_neomapping_node_result = db.cypher_query(neomapping_query, {"target_id": target_id, "current_nt_id": current_nt_id})
+
+            # LCV -> CCV
+            # If the Neoterm has the target uid_chain, add to results
+            if neoterm["uid_chain"] == target_id:
+                target_alias = "none"
+                target_definition = "none"
+
+                try:
+                    # Fetch neoterm's alias and definition (both are relationships)
+                    alias_query = """
+                    MATCH (NeoAlias)-[:POINTS_TO]->(nt:NeoTerm)
+                    WHERE nt.uid_chain = $target_id
+                    RETURN NeoAlias.alias
+                    """
+                    alias_result = db.cypher_query(alias_query, {"target_id": target_id})
+                    target_alias = alias_result[0][0][0]
+                except Exception as e:
+                    logger.exception("Error in mapping_search; source is lcv; alias_query: %s", e)
+                    return JsonResponse({"error": STR_DATABASE_QUERY_ERROR}, status=500)
+
+                try: 
+                    definition_query = """
+                    MATCH (NeoTerm)-[:POINTS_TO]->(d:NeoDefinition)
+                    WHERE NeoTerm.uid_chain = $target_id
+                    RETURN d.definition
+                    """
+                    definition_result = db.cypher_query(definition_query, {"target_id": target_id})
+                    target_definition = definition_result[0][0][0]
+                except Exception as e:
+                    logger.exception("Error in mapping_search; source is lcv; definition_query: %s", e)
+                    return JsonResponse({"error": STR_DATABASE_QUERY_ERROR}, status=500)
+
+                result = {
+                    "source" : {
+                        "alias" : node_alias,
+                        "definition" : node_definition
+                    },
+                    "relationship" : True,
+                    "target" : {
+                        "alias" : target_alias,
+                        "definition" : target_definition
+                    }
+                }
+
+                results.append(result)
+
+            # LCV -> LCV
+            # If neoterm connects to a NeoMapping node that matches the target
+            elif target_neomapping_node_result:
+                if len(list(target_neomapping_node_result)) != 0:
+                    try:
+                        # Pull-out target_neomapping_node
+                        target_neomapping_node = target_neomapping_node_result[0][0][0]
+                    except Exception as e:
+                        logger.exception("Error in mapping_search; source is lcv; neomapping_query: %s", e)
+                        return JsonResponse({"error": STR_DATABASE_QUERY_ERROR}, status=500)
+                    
+                    result = {
+                            "source" : {
+                                "alias" : node_alias,
+                                "definition" : node_definition
+                            },
+                            "relationship" : True,
+                            "target" : {
+                                "alias" : target_neomapping_node["aliases"][0],
+                                "definition" : target_neomapping_node["definition"]
+                            }
+                        }
+                    results.append(result)
+
+    # Source is CCV
+    else:
+        for node in NeoMapping.nodes.all():
+            node_definition = node.definition
+
+            try:
+                # Fetch the related "neoterm" node via the MAP_TO relationship
+                neoterm_query = """
+                MATCH (nm:NeoMapping)-[:MAPS_TO]->(neoterm:NeoTerm)
+                WHERE nm.definition = $node_definition
+                RETURN neoterm
+                """
+                neoterm_result = db.cypher_query(neoterm_query, {"node_definition": node_definition})
+                # Pull-out neoterm
+                neoterm = neoterm_result[0][0][0]
+            except Exception as e:
+                logger.exception("Error in mapping_search; source is ccv; neoterm_query: %s", e)
+                return JsonResponse({"error": STR_DATABASE_QUERY_ERROR}, status=500)
+
+            # Find neomapping that has uid_chain = target_id and return if it's neoterm.uid = the current neoterm.uid
+            current_nt_id = neoterm["uid"]
+            neomapping_query = """
+            MATCH (nm:NeoMapping)-[:MAPS_TO]->(nt:NeoTerm)
+            WHERE nm.uid_chain = $target_id AND nt.uid = $current_nt_id
+            RETURN nm
+            """
+            target_neomapping_node_result = db.cypher_query(neomapping_query, {"target_id": target_id, "current_nt_id": current_nt_id})
+
+            if len(list(target_neomapping_node_result)) != 0:
+                try:
+                    # Pull-out target_neomapping_node
+                    target_neomapping_node = target_neomapping_node_result[0][0][0]
+                except Exception as e:
+                    logger.exception("Error in mapping_search; source is ccv; neomapping_query: %s", e)
+                    return JsonResponse({"error": STR_DATABASE_QUERY_ERROR}, status=500)
+
+                result = {
+                        "source" : {
+                            "alias" : node.aliases[0],
+                            "definition" : node_definition
+                        },
+                        "relationship" : True,
+                        "target" : {
+                            "alias" : target_neomapping_node["aliases"][0],
+                            "definition" : target_neomapping_node["definition"]
+                        }
+                    }
+                results.append(result)
+
+    # Return results in JSON
+    return JsonResponse({"results": results})
+
+
+
+class GetMappings(APIView):
+
+    def get(self, request):
+        try:
+            # Get 2 uIDs: eventually will be hex values
+            # {"source": "DOD-ABC-123-XYZ-CSA", "target": "DOD-ABC-123-XYZ-JKO"}
+            source_id = request.GET.get('source')
+            target_id = request.GET.get('target')
+
+            logger.info(source_id)
+            logger.info(target_id)
+
+            # List to store all resulting NeoTerms
+            results = []
+
+            # Get all NeoMapping Nodes where uid_chain == source_id
+            source_nodes = []
+            for node in NeoMapping.nodes.all():
+                if node.uid_chain == source_id:
+                    source_nodes.append(node)
+            
+            if not source_nodes:
+                #check if the source_id is a NeoTerm
+                source_terms = NeoTerm.nodes.filter(uid_chain=source_id)
+                if not source_terms:
+                    return JsonResponse({"results": results})
+            
+            for neomapping_node in source_nodes:
+                # Fetch the related "neoterm" node via the MAP_TO relationship
+                neoterm_query = """
+                MATCH (NeoMapping)-[:MAPS_TO]->(neoterm:NeoTerm)
+                RETURN neoterm LIMIT 1
+                """
+                neoterm_result = db.cypher_query(neoterm_query)
+
+                # Pull-out neoterm
+                neoterm = neoterm_result[0][0][0]
+
+                # If the Neoterm has the target uid_chain, add to results
+                if neoterm["uid_chain"] == target_id:
+                    target_alias = "none"
+                    target_definition = "none"
+                    # Fetch neoterm's alias and definition (both are relationships)
+                    alias_query = """
+                    MATCH (NeoAlias)-[:POINTS_TO]->(nt:NeoTerm)
+                    WHERE nt.uid_chain = $target_id
+                    RETURN NeoAlias.alias
+                    """
+                    alias_result = db.cypher_query(alias_query, {"target_id": target_id})
+                    target_alias = alias_result[0][0][0]
+                    definition_query = """
+                    MATCH (NeoTerm)-[:POINTS_TO]->(d:NeoDefinition)
+                    WHERE NeoTerm.uid_chain = $target_id
+                    RETURN d.definition
+                    """
+                    definition_result = db.cypher_query(definition_query, {"target_id": target_id})
+                    target_definition = definition_result[0][0][0]
+                    result = {
+                        "source" : {
+                            "alias" : neomapping_node.aliases[0],
+                            "definition" : neomapping_node.definition
+                        },
+                        "relationship" : True,
+                        "target" : {
+                            "alias" : target_alias,
+                            "definition" : target_definition
+                        }
+                    }
+
+                    results.append(result)
+
+            return JsonResponse({"results": results})
+
+        except Exception as e:
+            logger.exception("Unexpected error in data_ingest_view: %s", e)
+            return JsonResponse({"error": "Internal server error"}, status=500)
