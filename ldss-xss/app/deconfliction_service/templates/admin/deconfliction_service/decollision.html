@@ -1,0 +1,70 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{# override the admin’s extrahead block just once #}
+{% block extrahead %}
+  {{ block.super }}
+  <style>
+    .button-container {
+      display: flex;
+      margin-top: 20px;
+    }
+    .inline-form {
+      display: inline-block;
+      margin-right: 1em;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div>
+    {% if aliases_1 %}
+      <h2>Alias 1</h2>
+      {% for alias in aliases_1 %}
+        <h3>{{ alias }}</h3>
+      {% endfor %}
+    {% endif %}
+    <h2>Definition 1</h2>
+    <h3>{{ definition_1.definition }}</h3>
+
+    {% if context_1 %}
+      <h2>Context 1</h2>
+      {% for ctx in context_1 %}
+        <h3>{{ ctx }}</h3>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <div>
+    {% if aliases_2 %}
+      <h2>Alias 2</h2>
+      {% for alias in aliases_2 %}
+        <h3>{{ alias }}</h3>
+      {% endfor %}
+    {% endif %}
+    <h2>Definition 2</h2>
+    <h3>{{ definition_2.definition }}</h3>
+
+    {% if context_2 %}
+      <h2>Context 2</h2>
+      {% for ctx in context_2 %}
+        <h3>{{ ctx }}</h3>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  {# single, standalone form for your POST #}
+  <form
+    method="post"
+    action="/admin/deconfliction_service/deconfliction/upgrade-definition/{{ definition_2.definition }}/{{ definition_2.entity_id }}/"
+    class="inline-form"
+  >
+    {% csrf_token %}
+    <p>Not a collision? Upgrade this definition to a unique term.</p>
+    <button type="submit" class="button">Upgrade to Unique Term</button>
+  </form>
+
+  <div class="button-container">
+    <a href="{% url 'admin:admin_deconfliction_view' %}" class="button">Back</a>
+  </div>
+{% endblock %}
