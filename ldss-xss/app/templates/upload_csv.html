@@ -1,0 +1,40 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static %}
+
+{% block content %}
+<div id="content-main">
+    
+    {% if success_message %}
+    <div style="padding:10px; background-color:#d4edda; color:#155724; border:1px solid #c3e6cb; margin-bottom:1em;">
+      {{ success_message }}
+    </div>
+  {% endif %}
+  {% if error_message %}
+    <div style="padding:10px; background-color:#f8d7da; color:#721c24; border:1px solid #f5c6cb; margin-bottom:1em;">
+      {{ error_message }}
+    </div>
+  {% endif %}
+
+    <form id="csv-upload-form" action="." method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="module aligned">
+            {% for field in form %}
+                <div class="form-row">
+                    <div>
+                        {{ field.errors|safe }}
+                        {{ field.label_tag|safe }}
+                        {{ field }}
+                        {% if field.help_text %}
+                            <div class="help">{{ field.help_text|safe }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </fieldset>
+        <div id="upload-status"></div>
+        <div class="submit-row">
+            <input type="submit" value="Upload CSV" class="default" name="_save" id="submit-button">
+        </div>
+    </form>
+</div>
+{% endblock %}
