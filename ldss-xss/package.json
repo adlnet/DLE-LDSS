@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "test:e2e-ci": "CYPRESS_BASE_URL=${ZAP_URL} npx cypress run --browser chrome --config-file cypress/config/pipeline.config.js",
+    "cypress": "npx cypress open --config-file cypress/config/local.config.js",
+    "cypress:prep": "docker-compose down && docker-compose --file ./docker-compose.cypress.yml  --verbose up -d --build"
+  },
+  "devDependencies": {
+    "cypress": "^15.1.0",
+    "cypress-file-upload": "^5.0.8",
+    "xlsx": "^0.18.5"
+  }
+}

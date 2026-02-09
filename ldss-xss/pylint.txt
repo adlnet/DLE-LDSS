@@ -1,0 +1,9 @@
+-- pylint command run by p1:
+
+pylint --ignore .ci_artifact,.cache --reports=y --recursive=y --persistent=n --vernose /builds/adl-ousd/LDSS/ldss-xss
+
+
+
+-- pylint command run locally:
+
+pylint --reports=y --verbose ./app/<subpath>

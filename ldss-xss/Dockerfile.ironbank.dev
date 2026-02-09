@@ -1,0 +1,57 @@
+FROM registry1.dso.mil/ironbank/opensource/python:v3.9
+
+RUN --mount=type=cache,target=/tmp/app/pip_cache
+
+ENV HF_HOME=/tmp/app/huggingface
+ENV NLTK_DATA=/tmp/app/nltk_data
+ENV PYTHONPATH=/tmp/app/openlxp-xss
+
+USER root
+
+RUN [ ! -e /usr/bin/python ] && ln -s /usr/bin/python3 /usr/bin/python
+
+RUN mkdir -p /tmp/app \
+    && mkdir -p /tmp/app/pip_cache \
+    && mkdir -p /tmp/app/openlxp-xss \
+    && mkdir -p $HF_HOME \
+    && mkdir -p /tmp/app/models/bi-encoder-similarity \
+    && mkdir -p /tmp/app/models/fine-tuned-cross-encoder \
+    && mkdir -p /tmp/app/nltk_data \
+    && mkdir -p /tmp/app/openlxp-xss/models/nltk_data \
+    && mkdir -p /tmp/app/openlxp-xss/models/all-mpnet-base-v2
+
+# if you really need volumes, point them at the right paths
+
+WORKDIR /tmp/app
+
+COPY requirements.txt requirements.txt
+COPY requirements_constraints.txt requirements_constraints.txt
+
+RUN pip install -r requirements.txt \
+    --cache-dir /tmp/app/pip_cache \
+    --prefer-binary \
+    --ignore-installed \
+    --extra-index-url https://download.pytorch.org/whl/cpu
+
+# chown everything so 'python' can write into the models tree
+RUN chown -R python:python /tmp/app \
+    && chown -R python:python $HF_HOME \
+    && chown -R python:python /tmp/app/nltk_data \
+    && chown -R python:python /tmp/app/models \
+    && chown -R python:python /tmp/app/openlxp-xss/models
+
+RUN chmod -R 777 /tmp/app/nltk_data \
+  && chmod -R 777 /tmp/app/models \
+  && chmod -R 777 /tmp/app/openlxp-xss/models
+
+COPY start-server.sh start-app.sh ./
+RUN chmod +x start-server.sh start-app.sh
+
+COPY --chown=python:python ./app /tmp/app/openlxp-xss/
+
+USER python
+
+WORKDIR /tmp/app/openlxp-xss
+
+EXPOSE 8020
+STOPSIGNAL SIGTERM

@@ -1,0 +1,167 @@
+services:
+  
+  clamav:
+    image: "clamav/clamav:1.2"
+    container_name: clamav
+    restart: always
+    ports:
+      - 127.0.0.1:3310:3310
+    networks:
+      - openlxp
+    environment:
+      CLAMD_CONF_MaxFileSize: "4000M"
+    healthcheck:
+      test: ["CMD-SHELL", "echo 'PING' | nc -w 5 localhost 3310"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.ironbank.dev
+    container_name: app
+    restart: always
+    ports:
+      - 8020:8020
+    entrypoint: /tmp/app/start-app.sh
+    environment:
+      DB_NAME: "${DB_NAME}"
+      DB_USER: "${DB_USER}"
+      DB_PASSWORD: "${DB_PASSWORD}"
+      DB_HOST: "${DB_HOST}"
+      SERVER_NAME: localhost
+      DJANGO_SUPERUSER_USERNAME: admin@email.com
+      DJANGO_SUPERUSER_PASSWORD: password
+      DJANGO_SUPERUSER_EMAIL: admin@email.com
+      NEO4J_HOST: "${NEO4J_HOST}"
+      NEO4J_PORT: "${NEO4J_PORT}"
+      NEO4J_USER: "${NEO4J_USER}"
+      NEO4J_PASSWORD: "${NEO4J_PASSWORD}"
+      NEO4J_DATABASE: "${NEO4J_DATABASE}"
+      HOSTS: "${HOSTS}"
+      SECRET_KEY_VAL: "${SECRET_KEY_VAL}"
+      TESTING: "${TESTING}"
+      LOG_PATH: "${LOG_PATH}"
+      CSRF_TRUSTED_ORIGINS: "*"
+      CSRF_COOKIE_DOMAIN: localhost
+      CATALOG_FILENAME: "${CATALOG_FILENAME}"
+      # DEBUG: "true"
+      USES_SSL_PROXY: "false"
+      FORCE_HTTP: "true"
+    volumes:
+      - ./app:/tmp/app/openlxp-xia-dau
+    #   - ./uploads:/tmp/app/uploads
+      - models:/temp/app/models
+      - nltk_data:/temp/app/nltk_data
+    depends_on:
+      db-xss:
+        condition: service_healthy
+        restart: true
+    networks:
+      - openlxp
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: "2.0"       # up to 1 CPU
+    #       memory: "2.5G"       # maximum 1 GiB
+    #     reservations:
+    #       cpus: "1.0"       # reserve 0.5 CPU
+    #       memory: "1G"     # reserve 512 MB
+
+  db-xss:
+    image: mysql:5.7
+    container_name: db
+    # ports:
+    #   - "3306:3306"
+    ports:
+      - 127.0.0.1:3306:3306
+    environment:
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USER}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_ROOT_USER: "${DB_ROOT_USER}"
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+    # volumes:
+    #   - mysql-storage:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysql --user=${DB_ROOT_USER} --execute=\"SHOW DATABASES\";"]
+      interval: 2s
+      timeout: 2s
+      retries: 20
+      start_period: 3s
+    deploy:
+      resources:
+        limits:
+          cpus: "1.00"       # up to 1 CPU
+          memory: "1G"       # maximum 1 GiB
+        reservations:
+          cpus: "0.50"       # reserve 0.5 CPU
+          memory: "512M"     # reserve 512 MB
+    networks:
+      - openlxp
+
+  neo4j:
+    image: neo4j:5.15.0
+    ports:
+      - "7687:7687"
+      - "7474:7474"
+    environment:
+      NEO4J_AUTH: ${NEO4J_USER}/${NEO4J_PASSWORD}
+      NEO4J_server_memory_heap_initial__size: 512M
+      NEO4J_server_memory_heap_max__size: 2G
+      NEO4J_server_memory_pagecache_size: 1G
+    networks:
+      - openlxp
+    # volumes:
+    #   - neo4j_data:/data
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"       # up to 0.5 CPU
+          memory: "4G"       # maximum 1 GiB
+        reservations:
+          cpus: "0.25"       # reserve 0.25 CPU
+          memory: "512M"     # reserve 512 MB
+  
+  nginx:
+    container_name: docker_nginx
+    restart: always
+    build:
+      context: nginx
+      dockerfile: Dockerfile.http
+      args:
+        - SERVER_NAME=localhost
+    ports:
+      - "80:80"
+    volumes:
+      - ./app/static:/var/app/static
+      # - ./app/media:/var/app/media
+      - ./nginx/letsencrypt:/usr/share/nginx/html
+      - ./certbot/etc:/usr/share/keys
+    environment:
+      SERVER_NAME: "${SERVER_NAME}"
+    depends_on:
+      - app
+    networks:
+      - openlxp
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"       # up to 50% of a CPU
+          memory: "512M"     # maximum 512 MB
+        reservations:
+          cpus: "0.25"       # reserve 25% of a CPU
+          memory: "256M"     # reserve 256 MB
+
+volumes:
+  data01:
+    driver: local
+  models:
+  nltk_data:
+  neo4j_data:
+  mysql_data:
+
+networks:
+  openlxp:
+    driver: bridge

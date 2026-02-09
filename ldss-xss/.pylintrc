@@ -1,0 +1,64 @@
+[DESIGN]
+max-attributes=12
+max-locals = 30
+max-nested-blocks=8
+
+[TYPECHECK]
+
+[MASTER]
+DJANGO_SETTINGS_MODULE=openlxp_xss_project.settings
+
+disable=invalid-name,
+        too-few-public-methods,
+        useless-super-delegation,
+        broad-except,
+        arguments-differ,
+        arguments-renamed,
+        missing-module-docstring,
+        missing-class-docstring,
+        missing-function-docstring,
+        super-with-arguments,
+        import-outside-toplevel,
+        unused-import,
+        unused-argument,
+        unused-variable,
+        no-value-for-parameter,
+        bad-super-call,
+        attribute-defined-outside-init,
+        abstract-method,
+        too-many-instance-attributes,
+        too-many-return-statements,
+        too-many-branches,
+        too-many-statements,
+        ungrouped-imports,
+        wrong-import-order,
+        line-too-long,
+        no-member,
+        redundant-unittest-assert,
+        deprecated-method,
+        too-many-arguments,
+        unnecessary-comprehension,
+        consider-using-f-string,
+        redefined-builtin,
+        no-else-return,
+        duplicate-code,
+        unrecognized-option,
+        protected-access,                       ## testing-irrelevant
+        trailing-whitespace,                    ## annoying
+        logging-format-interpolation,           ## weird about f-strings
+        logging-fstring-interpolation,          ## optimization thing that idc about
+        global-statement,                       ## small usage within the model loading
+        superfluous-parens,                     ## confuses CSP settings
+        useless-return                          ## Dumb setting
+
+
+ignore-paths=^.\/app/core/migrations\/.*$,
+            ^.\/app/api/tests\/.*$,
+            ^.*\.cache\/*\/.*$
+
+; init-hook="from pylint.config import find_pylintrc; import os, sys; sys.path.append(os.path.dirname(find_pylintrc()))"
+
+; [MESSAGES CONTROL]
+
+[FORMAT]
+max-line-length=100

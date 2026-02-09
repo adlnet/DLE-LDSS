@@ -1,0 +1,4 @@
+## Constraints
+##
+torch==2.8.0
+Django>=4.2.26

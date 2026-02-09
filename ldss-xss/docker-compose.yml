@@ -1,0 +1,193 @@
+version: "3"
+
+services:
+  clamav:
+    image: "clamav/clamav:1.2"
+    container_name: clamav
+    restart: always
+    ports:
+      - 127.0.0.1:3310:3310
+    networks:
+      - openlxp
+    environment:
+      CLAMD_CONF_MaxFileSize: "4000M"
+    healthcheck:
+      test: ["CMD-SHELL", "echo 'PING' | nc -w 5 localhost 3310"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  nginx:
+    container_name: docker_nginx
+    restart: always
+    build:
+      context: ./nginx
+      args:
+        SERVER_NAME: ${SERVER_NAME}
+    ports:
+      - "80:80"              # only HTTP now
+      - "443:443"   # TLS+ALPN multiplex for both HTTPS and Bolt
+    volumes:
+      - ./app:/tmp/app/openlxp-xss:ro
+      - ./nginx/letsencrypt:/usr/share/nginx/html:ro   # for ACME challenges
+      - ./certbot/etc:/usr/share/keys:ro               # letsencrypt certs
+      - ./nginx/proxy_headers.conf:/etc/nginx/proxy_headers.conf:ro
+    depends_on:
+      - app
+    networks:
+      - openlxp
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"      # up to 50% of a CPU core
+          memory: "512M"    # max 512 MB RAM
+        reservations:
+          cpus: "0.25"      # reserve 25% of a CPU core
+          memory: "256M"    # reserve 256 MB RAM
+
+  certbot:
+    container_name: docker_certbot
+    image: certbot/certbot
+    volumes:
+      - ./certbot/keys:/var/lib/letsencrypt
+      - ./nginx/letsencrypt:/data/letsencrypt
+      - ./certbot/etc:/etc/letsencrypt
+      - ./certbot/log:/var/log/letsencrypt
+    networks:
+      - openlxp
+    depends_on:
+      - nginx
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"       # up to 25% of a CPU
+          memory: "256M"     # maximum 256 MB
+        reservations:
+          cpus: "0.10"       # reserve 10% of a CPU
+          memory: "128M"     # reserve 128 MB
+
+  db-xss:
+    image: mysql:5.7
+    container_name: db
+    ports:
+      - 127.0.0.1:3306:3306
+    environment:
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USER}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$DB_ROOT_PASSWORD"]
+      interval: 2s
+      timeout: 2s
+      retries: 20
+      start_period: 3s
+    deploy:
+      resources:
+        limits:
+          cpus: "1.00"       # up to 1 CPU
+          memory: "1G"       # maximum 1 GiB
+        reservations:
+          cpus: "0.50"       # reserve 0.5 CPU
+          memory: "512M"     # reserve 512 MB
+    networks:
+      - openlxp
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.ironbank.dev
+    container_name: app
+    extra_hosts:
+      - "ldss-xia-dau.ldss.tla.adlnet.gov:host-gateway"
+    expose:
+      - "127.0.0.1:8020:8020"
+    # command: /tmp/app/start-app.sh
+    entrypoint: /tmp/app/start-app.sh
+    environment:
+      DB_NAME: "${DB_NAME}"
+      DB_USER: "${DB_USER}"
+      DB_ROOT_USER: "${DB_ROOT_USER}"
+      DB_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+      DB_PASSWORD: "${DB_PASSWORD}"
+      DB_HOST: "${DB_HOST}"
+      SERVER_NAME: "${SERVER_NAME}"
+      DJANGO_SUPERUSER_USERNAME: "${DJANGO_SUPERUSER_USERNAME}"
+      DJANGO_SUPERUSER_PASSWORD: "${DJANGO_SUPERUSER_PASSWORD}"
+      DJANGO_SUPERUSER_EMAIL: "${DJANGO_SUPERUSER_EMAIL}"
+      HOSTS: "${HOSTS}"
+      SECRET_KEY_VAL: "${SECRET_KEY_VAL}"
+      TESTING: "${TESTING}"
+      NEO4J_HOST: "${NEO4J_HOST}"
+      NEO4J_PORT: "${NEO4J_PORT}"
+      NEO4J_USER: "${NEO4J_USER}"
+      NEO4J_PASSWORD: "${NEO4J_PASSWORD}"
+      NEO4J_DATABASE: "${NEO4J_DATABASE}"
+      CLAM_AV_HOST: "${CLAM_AV_HOST}"
+      CLAM_AV_PORT: "${CLAM_AV_PORT}"
+      INSTANCE_ID: "${INSTANCE_ID}"
+      NLTK_DATA: "/temp/app/nltk_data"
+      XIA_URLS: "${XIA_URLS}"
+      XIA_CATALOG_PATH: "${XIA_CATALOG_PATH}"
+      IMAGE_SHA: "${IMAGE_SHA}"
+      STYLE_SHA: "${STYLE_SHA}"
+      SHOW_VERBOSE_LOGS: "${SHOW_VERBOSE_LOGS}"
+      USES_SSL_PROXY: "true"
+      FORCE_HTTP: "false"
+    volumes:
+      # - ./app:/tmp/app/openlxp-xss
+      - models:/temp/app/models
+      - nltk_data:/temp/app/nltk_data
+    depends_on:
+      db-xss:
+        condition: service_healthy
+        restart: true
+      clamav:
+        condition: service_healthy
+        restart: true
+    networks:
+      - openlxp
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"       # up to 1 CPU
+          memory: "2.5G"       # maximum 1 GiB
+        reservations:
+          cpus: "1.0"       # reserve 0.5 CPU
+          memory: "1G"     # reserve 512 MB
+  
+  neo4j:
+    image: neo4j:5.15.0
+    ports:
+      - "7687:7687"
+      - "7474:7474"
+    environment:
+      NEO4J_AUTH: ${NEO4J_USER}/${NEO4J_PASSWORD}
+      NEO4J_server_memory_heap_initial__size: 512M
+      NEO4J_server_memory_heap_max__size: 2G
+      NEO4J_server_memory_pagecache_size: 1G
+    networks:
+      - openlxp
+    volumes:
+      - neo4j_data:/data
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"       # up to 0.5 CPU
+          memory: "4G"       # maximum 1 GiB
+        reservations:
+          cpus: "0.25"       # reserve 0.25 CPU
+          memory: "512M"     # reserve 512 MB
+
+volumes:
+  data01:
+    driver: local
+  models:
+  nltk_data:
+  neo4j_data:
+  mysql_data:
+networks:
+  openlxp:
+    driver: bridge
