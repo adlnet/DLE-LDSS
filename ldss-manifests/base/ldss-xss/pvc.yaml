@@ -1,0 +1,13 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+   labels:
+      app: ldss-xss
+   name: xss-storage-claim
+spec:
+   accessModes:
+      - "ReadWriteOnce"
+   resources:
+      requests:
+         storage: "1Gi"
+---

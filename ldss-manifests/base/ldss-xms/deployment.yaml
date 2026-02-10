@@ -1,0 +1,137 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ldss-xms
+spec:
+  strategy:
+    type: Recreate
+  revisionHistoryLimit: 1
+  template:
+    spec:
+      securityContext:
+        fsGroup: 1001
+      serviceAccountName: s3-role
+      terminationGracePeriodSeconds: 15
+      imagePullSecrets:
+        - name: code-il2-pull-creds
+      containers:
+        - name: ldss-xms
+          image: ldss/ldss-xms
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: "/tmp/shared/"
+              name: xms-storage-mount
+          command:
+            - "/bin/sh"
+            - "-exc"
+            - |
+              sed -i 's/hashlib.md5()/hashlib.md5(usedforsecurity=False)/g' /tmp/app/.cache/python-packages/django/db/backends/utils.py
+              ../start-app.sh
+          envFrom:
+            - configMapRef:
+                name: app-name
+            - configMapRef:
+                name: app-vars
+            - secretRef:
+                name: app-db-credentials
+            - secretRef:
+                name: mysql-connect-info
+            - secretRef:
+                name: xds-secrets
+            - configMapRef:
+                name: cluster-prefix
+          env:
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: S3_BUCKET_NAME
+              value: pb-mdo-$(NAMESPACE)-$(CLUSTER_PREFIX)
+            - name: S3_REGION
+              value: us-gov-west-1
+            - name: S3_ENDPOINT_URL
+              value: https://s3.us-gov-west-1.amazonaws.com
+            - name: FORCE_SCRIPT_NAME
+              value: "/ldss-xms"
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-connect-info
+                  key: MYSQL_HOST
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-credentials
+                  key: MYSQL_DB_NAME_3
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-credentials
+                  key: MYSQL_DB_ADMIN_USER_3
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-credentials
+                  key: MYSQL_DB_ADMIN_PASSWORD_3
+            - name: MYSQL_DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-credentials
+                  key: MYSQL_DB_NAME_3
+            - name: MYSQL_DB_ADMIN_USER
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-credentials
+                  key: MYSQL_DB_ADMIN_USER_3
+            - name: MYSQL_DB_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-credentials
+                  key: MYSQL_DB_ADMIN_PASSWORD_3
+            - name: MYSQL_DB_RW_USER
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-credentials
+                  key: MYSQL_DB_RW_USER_3
+            - name: MYSQL_DB_RW_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-credentials
+                  key: MYSQL_DB_RW_PASSWORD_3
+            - name: MYSQL_DB_RO_USER
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-credentials
+                  key: MYSQL_DB_RO_USER_3
+            - name: MYSQL_DB_RO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-credentials
+                  key: MYSQL_DB_RO_PASSWORD_3
+        - name: xms-nginx
+          image: registry1.dso.mil/ironbank/opensource/nginx/nginx:1.27.3
+          ports: 
+            - containerPort: 8080
+              name: xms-nginx-port
+          volumeMounts:
+            - mountPath: "/usr/share/nginx/html"
+              name: xms-storage-mount
+            - mountPath: /etc/nginx/conf.d/
+              name: nginx-default
+          # command:
+          #   - "/bin/sh"
+          #   - "-exc"
+          #   - |
+          #     # Modify Nginx default configuration if needed
+          #     sed -i 's/listen 80;/listen 8080;/' /etc/nginx/conf.d/default.conf
+          #     sed -i 's/user  nginx;/user  nginx; worker_processes  4;/' /etc/nginx/nginx.conf
+          #     # Start Nginx with the modified configuration
+          #     nginx -g "daemon off;"
+      volumes:
+        - name: xms-storage-mount
+          persistentVolumeClaim:
+            claimName: xms-storage-claim
+        - name: nginx-default
+          configMap:
+            name: xms-nginx-default-config
+

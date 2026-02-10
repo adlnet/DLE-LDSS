@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+commonLabels:
+  app: ldss-xia-aetc
+  authentication: istio-auth
+
+resources:
+- deployment.yaml
+- service.yaml
+- pvc.yaml
+
+configMapGenerator:
+- name: xia-aetc-nginx-default-config
+  files:
+  - nginx.conf

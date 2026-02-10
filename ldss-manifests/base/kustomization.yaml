@@ -1,0 +1,25 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+commonLabels:
+  authentication: istio-auth
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+- behavior: create
+  literals:
+  - CLAM_AV_HOST=clamd.clamav
+  - CLAM_AV_PORT=3310
+  name: clamav-config
+
+resources:
+- ldss-ui
+- ldss-xms
+- ldss-xia-jko
+- ldss-xia-dau
+- ldss-xss
+- ldss-xia-aetc
+- elasticsearch
+- neo4j

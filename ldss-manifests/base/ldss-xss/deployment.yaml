@@ -1,0 +1,185 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ldss-xss
+spec:
+  revisionHistoryLimit: 1
+  strategy:
+    type: Recreate
+  template:
+    spec:
+      securityContext:
+        fsGroup: 1001
+      serviceAccountName: s3-role
+      terminationGracePeriodSeconds: 15
+      imagePullSecrets:
+        - name: code-il2-pull-creds
+      containers:
+        - name: ldss-xss
+          image: ldss/ldss-xss
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: 1Gi
+          volumeMounts:
+            - mountPath: "/tmp/shared/"
+              name: xss-storage-mount
+          command:
+            - "/bin/sh"
+            - "-exc"
+            - |
+              cat /etc/os-release
+              sed -i 's/hashlib.md5()/hashlib.md5(usedforsecurity=False)/g' /tmp/app/.cache/python-packages/django/db/backends/utils.py
+              ../start-app.sh
+          envFrom:
+          - configMapRef:
+              name: app-name
+          - configMapRef:
+              name: app-vars
+          - secretRef:
+              name: app-db-credentials
+          - secretRef:
+              name: mysql-connect-info
+          - secretRef:
+              name: xds-secrets
+          - configMapRef:
+              name: cluster-prefix
+          - configMapRef:
+              name: clamav-config
+          - secretRef:
+              name: neo4j-secrets
+          - secretRef:
+              name: xss-secrets
+          env:
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            # - name: S3_BUCKET_NAME
+            #   value: pb-mdo-$(NAMESPACE)-$(CLUSTER_PREFIX)
+            # - name: S3_REGION
+            #   value: us-gov-west-1
+            # - name: S3_ENDPOINT_URL
+            #   value: https://s3.us-gov-west-1.amazonaws.com
+            - name: USES_SSL_PROXY
+              value: "true"
+            - name: CLAM_AV_HOST
+              value: clamd.clamav
+            - name: CLAM_AV_PORT
+              value: "3310"
+            - name: LOG_PATH
+              value: "/tmp/debug.log"
+            - name: FORCE_SCRIPT_NAME
+              value: "/ldss-xss"
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-connect-info
+                  key: MYSQL_HOST
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-credentials
+                  key: MYSQL_DB_NAME_7
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-credentials
+                  key: MYSQL_DB_ADMIN_USER_7
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-credentials
+                  key: MYSQL_DB_ADMIN_PASSWORD_7
+            - name: MYSQL_DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-credentials
+                  key: MYSQL_DB_NAME_7
+            - name: MYSQL_DB_ADMIN_USER
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-credentials
+                  key: MYSQL_DB_ADMIN_USER_7
+            - name: MYSQL_DB_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-credentials
+                  key: MYSQL_DB_ADMIN_PASSWORD_7
+            - name: MYSQL_DB_RW_USER
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-credentials
+                  key: MYSQL_DB_RW_USER_7
+            - name: MYSQL_DB_RW_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-credentials
+                  key: MYSQL_DB_RW_PASSWORD_7
+            - name: MYSQL_DB_RO_USER
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-credentials
+                  key: MYSQL_DB_RO_USER_7
+            - name: MYSQL_DB_RO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-db-credentials
+                  key: MYSQL_DB_RO_PASSWORD_7
+            - name: NEO4J_USER
+              valueFrom:
+                secretKeyRef:
+                  name: neo4j-secrets
+                  key: NEO4J_USER
+            - name: NEO4J_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: neo4j-secrets
+                  key: NEO4J_PASSWORD
+            - name: NEO4J_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: neo4j-secrets
+                  key: NEO4J_HOST
+            - name: NEO4j_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: neo4j-secrets
+                  key: NEO4J_PORT
+            - name: NEO4J_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: neo4j-secrets
+                  key: NEO4J_DATABASE
+            - name: SENTENCE_TRANSFORMERS_HOME
+              value: "/tmp/app/huggingface"
+            - name: HF_HOME
+              value: "/tmp/app/huggingface"
+            - name: TRANSFORMERS_CACHE
+              value: "/tmp/app/huggingface/transformers"
+            - name: HF_DATASETS_CACHE
+              value: "/tmp/app/huggingface/datasets"
+            - name: NLTK_DATA
+              value: "/tmp/app/models/nltk_data"
+            - name: XIA_URLS
+              value: "https://ldss.staging.dso.mil/ldss-xia-aetc,https://ldss.staging.dso.mil/ldss-xia-jko,https://ldss.staging.dso.mil/ldss-xia-dau"
+            - name: XIA_CATALOG_PATH
+              value: "/api/catalog"
+        - name: xss-nginx
+          image: registry1.dso.mil/ironbank/opensource/nginx/nginx:1.27.3
+          ports: 
+            - containerPort: 8080
+              name: xss-nginx-port
+          volumeMounts:
+            - mountPath: "/usr/share/nginx/html"
+              name: xss-storage-mount
+            - mountPath: /etc/nginx/conf.d/
+              name: nginx-default
+      volumes:
+        - name: xss-storage-mount
+          persistentVolumeClaim:
+            claimName: xss-storage-claim
+        - name: nginx-default
+          configMap:
+            name: xss-nginx-default-config
+

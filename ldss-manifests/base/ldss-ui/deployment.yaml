@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ldss-ui
+spec:
+  revisionHistoryLimit: 1
+  template:
+    spec:
+      serviceAccountName: s3-role
+      terminationGracePeriodSeconds: 15
+      imagePullSecrets:
+        - name: code-il2-pull-creds
+      containers:
+        - name: ldss-ui
+          image: ldss/ldss-ui
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: app-name
+            - secretRef:
+                name: app-db-credentials
+            - secretRef:
+                name: mysql-connect-info
+            - configMapRef:
+                name: cluster-prefix
+          env:
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: S3_BUCKET_NAME
+              value: pb-mdo-$(NAMESPACE)-$(CLUSTER_PREFIX)
+            - name: S3_REGION
+              value: us-gov-west-1
+            - name: S3_ENDPOINT_URL
+              value: https://s3.us-gov-west-1.amazonaws.com
+            - name: NODE_ENV
+              value: production
+            - name: CCV_BASE_URL
+              value: https://ldss.staging.dso.mil/ldss-xss
