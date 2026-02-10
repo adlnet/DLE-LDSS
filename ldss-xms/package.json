@@ -1,0 +1,5 @@
+{
+"scripts": {
+    "test:e2e-ci": "CYPRESS_BASE_URL=${ZAP_URL} npx cypress run --browser chrome --config-file cypress/config/pipeline.config.js"
+    }
+}

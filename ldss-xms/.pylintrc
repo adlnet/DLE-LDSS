@@ -1,0 +1,50 @@
+[DESIGN]
+
+[TYPECHECK]
+
+[MASTER]
+DJANGO_SETTINGS_MODULE=openlxp_xms_project.settings
+
+disable=useless-super-delegation,
+        invalid-name,
+        broad-except,
+        unused-argument,
+        arguments-renamed,
+        abstract-method,
+        duplicate-code,
+        attribute-defined-outside-init,
+        too-many-instance-attributes,
+        no-else-return,
+        redefined-builtin,
+        consider-using-with,
+        missing-module-docstring,
+        missing-function-docstring,
+        missing-class-docstring,
+        super-with-arguments,
+        no-name-in-module,
+        import-outside-toplevel,
+        consider-using-f-string,
+        no-member,
+        consider-using-from-import,
+        protected-access,
+        invalid-str-returned,
+        too-few-public-methods,
+        missing-timeout,
+        unrecognized-option,
+        too-many-locals,
+        line-too-long,
+        unused-variable
+
+
+ignore-paths=^.\/app/configurations/migrations\/.*$,
+             ^.*\migrations\/*\/.*$,
+             ^.\/app/api/tests\/.*$,
+             ^.\/app/core/migrations\/.*$,
+             ^.*\.cache\/*\/.*$
+
+init-hook="from pylint.config import find_pylintrc; import os, sys; sys.path.append(os.path.dirname(find_pylintrc()))"
+
+[MESSAGES CONTROL]
+
+[FORMAT]
+max-line-length=100
