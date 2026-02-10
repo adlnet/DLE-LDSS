@@ -1,0 +1,2 @@
+dss-xss/app/models/all-mpnet-base-v2/model.safetensors.part1 filter=lfs diff=lfs merge=lfs -text
+dss-xss/app/models/all-mpnet-base-v2/model.safetensors.part2 filter=lfs diff=lfs merge=lfs -text
