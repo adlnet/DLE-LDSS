@@ -5,6 +5,7 @@ This repository contains the **LDSS service source code** along with **Kubernete
 
 LDSS is designed to support schema-driven systems, data interoperability, and standards-based linked data workflows.
 
+## Missing Components
 This repo does rely on XIAs as well (eXperience Indexing Agents), but these had to remain private in order to protect the data plan of some organizations.
 
 ---
