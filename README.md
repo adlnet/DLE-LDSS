@@ -19,3 +19,8 @@ This repo does rely on XIAs as well (eXperience Indexing Agents), but these had 
 
 ---
 
+## Installing node packages
+Because this was built for a PartyBus deployment, the following code must be run in the root directory before you can build some systems:
+```
+npm install
+```
