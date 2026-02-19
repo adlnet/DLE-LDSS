@@ -1,0 +1,8 @@
+Run the following command to create a mapping from an LCV to a CCV
+
+curl --location 'https://ccv.URL/api/create-local-mappings/' \
+--header 'Content-Type: application/json' \
+--data '{
+    "source": "souce LCV",
+    "target": "target CCV"
+}'
